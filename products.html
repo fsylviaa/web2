@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AI 产品 — F.Sylvia</title>
+<meta name="description" content="Sylvia 做过的 AI 产品、实验和小工具。" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg" />
+<link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="logo" href="index.html">
+      <span class="logo-text">F.Sylvia®</span>
+      <span class="logo-star" aria-hidden="true">✳︎</span>
+    </a>
+    <div class="links">
+      <a href="about.html">关于我<small>About</small></a><span>,&nbsp;</span>
+      <a href="products.html" class="active" aria-current="page">AI 产品<small>AI Products</small></a><span>,&nbsp;</span>
+      <a href="art.html">艺术作品<small>Art</small></a><span>,&nbsp;</span>
+      <a href="content.html">内容<small>Content</small></a>
+    </div>
+    <a class="cta" href="about.html#contact">联系我<small>Contact</small></a>
+    <button class="burger" id="burger" aria-label="打开菜单 Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="overlay m-links" id="overlay">
+    <a href="index.html">首页<small>Home</small></a>
+    <a href="about.html">关于我<small>About</small></a>
+    <a href="products.html">AI 产品<small>AI Products</small></a>
+    <a href="art.html">艺术作品<small>Art</small></a>
+    <a href="content.html">内容<small>Content</small></a>
+    <a href="about.html#contact" class="u">联系我<small>Contact</small></a>
+  </div>
+
+  <main class="wrap">
+
+    <style>
+      .pgrid { display: grid; gap: 28px; grid-template-columns: 1fr; padding-bottom: 8px; }
+      @media (min-width: 820px) { .pgrid { grid-template-columns: repeat(2, 1fr); gap: 36px; } }
+      .pcard { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+      .pcard .ph-img { aspect-ratio: 16 / 10; transition: transform .4s ease; }
+      .pcard:hover .ph-img { transform: translateY(-4px) rotate(-.4deg); }
+      .pbody { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+      .pmeta { display: flex; gap: 14px; font-size: 13px; color: var(--muted); letter-spacing: .04em; }
+      .pcard h3 { font-family: var(--font-heading); font-weight: 500; font-size: clamp(24px, 3vw, 30px); letter-spacing: -0.02em; line-height: 1.15; }
+      .pcard h3 small { font-family: var(--font-body); font-size: .55em; color: var(--muted); margin-left: .3em; }
+      .pcard p { color: rgba(255,255,255,.86); max-width: 34em; }
+      .feature { display: grid; gap: 28px; align-items: center; padding: 48px 0; border-bottom: 1px solid var(--line); }
+      @media (min-width: 900px) { .feature { grid-template-columns: 1.1fr .9fr; gap: 48px; } }
+      .feature > * { min-width: 0; }
+      .feature .ph-img { aspect-ratio: 16 / 11; }
+      .feature h2 { font-family: var(--font-heading); font-weight: 500; font-size: clamp(34px, 5vw, 56px); letter-spacing: -0.03em; line-height: 1.02; margin: 10px 0 16px; }
+      .stats { display: flex; gap: 32px; flex-wrap: wrap; margin: 22px 0 26px; }
+      .stat b { display: block; font-family: var(--font-heading); font-weight: 500; font-size: 30px; font-variant-numeric: tabular-nums; }
+      .stat span { font-size: 13px; color: var(--muted); }
+    </style>
+
+    <header class="page-head">
+      <p class="eyebrow rise">AI Products · AI 产品</p>
+      <h1 class="page-title rise">AI 产品<small>Things I've designed, shipped and learned from</small></h1>
+      <p class="lede rise">我做过的 AI 产品、实验和小工具。<span class="ph">一句话概括你做产品的思路。</span>
+        <span class="en">Products, experiments and small tools. <span class="ph">One line on how you build.</span></span></p>
+      <p class="ph-note">✎ 占位内容 · 之后替换成真实内容</p>
+    </header>
+
+    <section class="feature">
+      <div class="ph-img rise" data-label="精选项目大图 · Featured"></div>
+      <div class="rise">
+        <p class="eyebrow">精选 Featured · 20XX</p>
+        <h2>海报工厂<br><span style="font-size:.5em;color:var(--muted);font-family:var(--font-body)">Poster Factory</span></h2>
+        <p><span class="ph">一两句话：它解决了什么问题、给谁用、你在里面做了什么。</span></p>
+        <div class="stats">
+          <div class="stat"><b><span class="ph">0,000</span></b><span>用户 / Users</span></div>
+          <div class="stat"><b><span class="ph">00%</span></b><span>关键指标 / Metric</span></div>
+          <div class="stat"><b><span class="ph">0</span> 周</b><span>从想法到上线 / To launch</span></div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn" href="#">试一试 Try it →</a>
+          <a class="btn line" href="#">查看案例 Case study</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title rise">更多项目 <small>More work</small></h2>
+      <div class="pgrid">
+        
+        <article class="pcard rise">
+          <div class="ph-img" data-label="项目封面 · Cover 01"></div>
+          <div class="pbody">
+            <div class="pmeta"><span>AI 工具</span><span>20XX</span></div>
+            <h3>项目名称 <small>Project name</small></h3>
+            <p><span class="ph">一句话描述：它是什么、解决了什么问题。</span></p>
+            <div class="chips"><span class="chip">AI</span><span class="chip"><span class="ph">角色</span></span><span class="chip"><span class="ph">工具 / 模型</span></span></div>
+            <a class="btn line" href="#">查看案例 Case study →</a>
+          </div>
+        </article>
+        
+        <article class="pcard rise">
+          <div class="ph-img" data-label="项目封面 · Cover 02"></div>
+          <div class="pbody">
+            <div class="pmeta"><span>AI 应用</span><span>20XX</span></div>
+            <h3>项目名称 <small>Project name</small></h3>
+            <p><span class="ph">一句话描述：它是什么、解决了什么问题。</span></p>
+            <div class="chips"><span class="chip">AI</span><span class="chip"><span class="ph">角色</span></span><span class="chip"><span class="ph">工具 / 模型</span></span></div>
+            <a class="btn line" href="#">查看案例 Case study →</a>
+          </div>
+        </article>
+        
+        <article class="pcard rise">
+          <div class="ph-img" data-label="项目封面 · Cover 03"></div>
+          <div class="pbody">
+            <div class="pmeta"><span>实验 Lab</span><span>20XX</span></div>
+            <h3>小游戏 <small>Mini game</small></h3>
+            <p><span class="ph">一句话描述：好玩在哪里、用了什么 AI 能力。</span></p>
+            <div class="chips"><span class="chip">AI</span><span class="chip"><span class="ph">角色</span></span><span class="chip"><span class="ph">工具 / 模型</span></span></div>
+            <a class="btn line" href="#">查看案例 Case study →</a>
+          </div>
+        </article>
+        
+        <article class="pcard rise">
+          <div class="ph-img" data-label="项目封面 · Cover 04"></div>
+          <div class="pbody">
+            <div class="pmeta"><span>实验 Lab</span><span>20XX</span></div>
+            <h3>项目名称 <small>Project name</small></h3>
+            <p><span class="ph">一句话描述：它是什么、解决了什么问题。</span></p>
+            <div class="chips"><span class="chip">AI</span><span class="chip"><span class="ph">角色</span></span><span class="chip"><span class="ph">工具 / 模型</span></span></div>
+            <a class="btn line" href="#">查看案例 Case study →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap foot">
+    <span>© F.Sylvia · AI 产品经理 / 艺术家</span>
+    <span><a href="index.html">回到首页 Home</a> · <button type="button" data-copy="silviafsy01@gmail.com" style="background:none;border:0;text-decoration:underline;text-underline-offset:3px">silviafsy01@gmail.com</button></span>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>

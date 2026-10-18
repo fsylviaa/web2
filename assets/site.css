@@ -1,0 +1,158 @@
+/* ============================================================
+   F.Sylvia 子页面公共样式（关于我 / AI 产品 / 艺术作品 / 内容）
+   颜色、字体和首页保持一致：毛毡红底 + 白字
+   ============================================================ */
+:root {
+  --red-deep: #6e0610;
+  --red: #8c0712;
+  --red-warm: #c7202b;
+  --cream: #fff4ea;
+  --ink: #1a0a0b;
+  --line: rgba(255, 255, 255, .22);
+  --muted: rgba(255, 255, 255, .68);
+  --font-heading: 'HelveticaNowDisplay-Medium', 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-body: 'HelveticaNowDisplayW01-Rg', 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html { background-color: #8c0712; }
+body {
+  font-family: var(--font-body);
+  color: #fff;
+  background: transparent;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  position: relative; z-index: 0;
+  overflow-x: clip;
+}
+/* 红色渐变背景：固定在屏幕上，滚动时不动 */
+html::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(1200px 700px at 85% -10%, rgba(240, 85, 72, .55), transparent 60%),
+    linear-gradient(160deg, var(--red) 0%, var(--red-deep) 100%);
+}
+/* 细细的毛毡纹理 */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .18;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+img { max-width: 100%; display: block; }
+.wrap { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 640px) { .wrap { padding-left: 32px; padding-right: 32px; } }
+@media (min-width: 768px) { .wrap { padding-left: 40px; padding-right: 40px; } }
+
+/* ---------- 导航（和首页一样） ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px max(20px, env(safe-area-inset-right, 0px)) 16px max(20px, env(safe-area-inset-left, 0px));
+  background: linear-gradient(to bottom, rgba(110, 6, 16, .92), rgba(110, 6, 16, .0));
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-text { font-family: var(--font-heading); font-size: 21px; letter-spacing: -0.025em; }
+.logo-star { font-size: 25px; user-select: none; }
+.links, .cta { display: none; }
+.links { font-size: 20px; align-items: baseline; }
+.links a, .cta { transition: opacity .2s; }
+.links a:hover, .cta:hover { opacity: .6; }
+.links a.active { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.links small, .cta small, .m-links small { font-size: .55em; opacity: .75; margin-left: .3em; letter-spacing: .02em; }
+.cta { font-size: 20px; text-decoration: underline; text-underline-offset: 4px; }
+.burger { display: flex; flex-direction: column; gap: 5px; background: none; border: 0; padding: 6px; position: relative; z-index: 11; }
+.burger span { display: block; width: 24px; height: 2px; background: #fff; transition: all .3s; }
+body.menu-open .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+body.menu-open .burger span:nth-child(2) { opacity: 0; }
+body.menu-open .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.overlay {
+  position: fixed; inset: 0; z-index: 9;
+  background: rgba(0, 0, 0, .9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  display: flex; flex-direction: column; justify-content: center; gap: 32px; padding: 0 32px;
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+body.menu-open .overlay { opacity: 1; pointer-events: auto; }
+.m-links a { font-size: 32px; font-weight: 500; }
+.m-links .u { text-decoration: underline; text-underline-offset: 5px; }
+@media (min-width: 640px) { .nav { padding: 20px 32px; } .logo-text { font-size: 26px; } .logo-star { font-size: 30px; } }
+@media (min-width: 768px) { .links { display: flex; } .cta { display: inline; } .burger, .overlay { display: none; } }
+@media (min-width: 1100px) { .links, .cta { font-size: 23px; } }
+
+/* ---------- 页面标题 ---------- */
+.page-head { padding: 64px 0 48px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+.page-title { font-family: var(--font-heading); font-weight: 500; font-size: clamp(44px, 9vw, 112px); line-height: .98; letter-spacing: -0.03em; text-wrap: balance; }
+.page-title small { display: block; font-family: var(--font-body); font-size: .3em; letter-spacing: -0.01em; color: var(--muted); margin-top: .5em; }
+.lede { max-width: 38em; margin-top: 28px; font-size: clamp(17px, 2.2vw, 21px); line-height: 1.55; }
+.lede .en { display: block; font-size: .78em; color: var(--muted); margin-top: .5em; }
+
+.section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+.section:last-of-type { border-bottom: 0; }
+.section-title { font-family: var(--font-heading); font-weight: 500; font-size: clamp(26px, 3.6vw, 36px); letter-spacing: -0.02em; margin-bottom: 28px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.section-title small { font-family: var(--font-body); font-size: .5em; color: var(--muted); letter-spacing: .02em; }
+
+/* 占位标记：一眼能看出哪里还要换 */
+.ph { background: rgba(255, 255, 255, .1); border-radius: 4px; padding: 0 .3em; color: #ffe9d6; }
+.ph-note { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .06em; color: #ffe9d6; border: 1px dashed rgba(255, 233, 214, .55); border-radius: 999px; padding: 4px 12px; margin-top: 22px; }
+
+/* 占位图：毛毡格纹，带"图片占位"字样 */
+.ph-img {
+  position: relative; width: 100%; aspect-ratio: 4 / 3; max-width: 100%;
+  border-radius: 18px; overflow: hidden;
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, .06) 0 12px, transparent 12px 24px),
+    linear-gradient(140deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .04));
+  border: 1px solid rgba(255, 255, 255, .16);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255, 255, 255, .7); font-size: 13px; letter-spacing: .08em;
+}
+.ph-img::after { content: attr(data-label); }
+
+/* 标签 */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 12.5px; padding: 4px 12px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .5); white-space: nowrap; }
+.chip.solid { background: #fff; color: var(--ink); border-color: #fff; }
+
+/* 按钮 */
+.btn { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; padding: .45em 1.2em; border-radius: 999px; background: #fff; color: #000; border: 1px solid #fff; transition: background-color .2s, color .2s; }
+.btn:hover { background: #000; color: #fff; border-color: #000; }
+.btn.line { background: transparent; color: #fff; }
+.btn.line:hover { background: #fff; color: #000; border-color: #fff; }
+
+/* 页脚 */
+.foot { position: relative; z-index: 1; padding: 40px 0 56px; color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.foot a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* 进场动画 */
+.rise { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.rise.in { opacity: 1; transform: none; }
+
+/* 复制成功的小提示 */
+.toast { position: fixed; left: 50%; bottom: 32px; transform: translate(-50%, 20px); z-index: 1100; background: #fff; color: #000; font-size: 14px; padding: 10px 18px; border-radius: 999px; opacity: 0; transition: all .3s; pointer-events: none; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+:focus-visible { outline: 2px solid #ffe9d6; outline-offset: 3px; border-radius: 6px; }
+
+/* ---------- 毛毡小蛋糕鼠标 + 荧光拖尾（只在有鼠标的设备上） ---------- */
+.cake-cursor {
+  position: fixed; left: 0; top: 0; z-index: 1000;
+  width: 112px; height: 112px;
+  background: url(../cake.png) no-repeat center / contain;
+  pointer-events: none; display: none;
+  transform-origin: 11px 11px; will-change: transform;
+}
+.cake-trail { position: fixed; inset: 0; z-index: 999; width: 100%; height: 100%; pointer-events: none; display: none; }
+@media (hover: hover) and (pointer: fine) {
+  html, body, a, button { cursor: none; }
+  .cake-cursor.on { display: block; }
+  .cake-trail { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cake-trail { display: none !important; }
+  .rise { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}

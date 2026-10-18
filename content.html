@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>内容 — F.Sylvia</title>
+<meta name="description" content="Sylvia 的文章、视频和分享。" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg" />
+<link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="logo" href="index.html">
+      <span class="logo-text">F.Sylvia®</span>
+      <span class="logo-star" aria-hidden="true">✳︎</span>
+    </a>
+    <div class="links">
+      <a href="about.html">关于我<small>About</small></a><span>,&nbsp;</span>
+      <a href="products.html">AI 产品<small>AI Products</small></a><span>,&nbsp;</span>
+      <a href="art.html">艺术作品<small>Art</small></a><span>,&nbsp;</span>
+      <a href="content.html" class="active" aria-current="page">内容<small>Content</small></a>
+    </div>
+    <a class="cta" href="about.html#contact">联系我<small>Contact</small></a>
+    <button class="burger" id="burger" aria-label="打开菜单 Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="overlay m-links" id="overlay">
+    <a href="index.html">首页<small>Home</small></a>
+    <a href="about.html">关于我<small>About</small></a>
+    <a href="products.html">AI 产品<small>AI Products</small></a>
+    <a href="art.html">艺术作品<small>Art</small></a>
+    <a href="content.html">内容<small>Content</small></a>
+    <a href="about.html#contact" class="u">联系我<small>Contact</small></a>
+  </div>
+
+  <main class="wrap">
+
+    <style>
+      .posts { list-style: none; margin-top: 8px; }
+      .post { display: grid; grid-template-columns: 1fr auto; gap: 6px 20px; padding: 24px 0; border-top: 1px solid var(--line); align-items: baseline; position: relative; }
+      .post:last-child { border-bottom: 1px solid var(--line); }
+      @media (min-width: 820px) { .post { grid-template-columns: 9em 1fr 12em 7em 1.5em; } }
+      .post .kind { font-size: 13px; color: var(--muted); letter-spacing: .04em; }
+      .post .ptitle { font-family: var(--font-heading); font-weight: 500; font-size: clamp(19px, 2.4vw, 24px); letter-spacing: -0.01em; line-height: 1.3; grid-column: 1 / -1; }
+      @media (min-width: 820px) { .post .ptitle { grid-column: auto; } }
+      .post .ptitle::after { content: ""; position: absolute; inset: 0; }
+      .post .pmeta2, .post time { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+      .post .arrow { transition: transform .25s; display: none; }
+      @media (min-width: 820px) { .post .arrow { display: inline; } }
+      .post:hover .arrow { transform: translate(3px, -3px); }
+      .post:hover .ptitle { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+      .channels { display: grid; gap: 16px; grid-template-columns: 1fr; }
+      @media (min-width: 720px) { .channels { grid-template-columns: repeat(3, 1fr); } }
+      .channel { border: 1px solid var(--line); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 6px; transition: background-color .2s; }
+      .channel:hover { background: rgba(255,255,255,.07); }
+      .channel b { font-family: var(--font-heading); font-weight: 500; font-size: 20px; }
+      .channel span { color: var(--muted); font-size: 14px; }
+    </style>
+
+    <header class="page-head">
+      <p class="eyebrow rise">Content · 内容</p>
+      <h1 class="page-title rise">内容<small>Writing, videos and talks</small></h1>
+      <p class="lede rise">我写的文章、拍的视频和做过的分享。<span class="ph">一句话说你常聊的话题。</span>
+        <span class="en">Writing, videos and talks. <span class="ph">What you usually talk about.</span></span></p>
+      <p class="ph-note">✎ 占位内容 · 之后替换成真实内容</p>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title rise">最新 <small>Latest</small></h2>
+      <ul class="posts">
+        <li class="post rise">
+          <span class="kind">文章 Article</span>
+          <a class="ptitle" href="#"><span class="ph">文章标题：比如「艺术家为什么适合做 AI 产品」</span></a>
+          <span class="pmeta2"><span class="ph">公众号 / Medium</span> · 5 分钟阅读</span>
+          <time>20XX.XX.XX</time>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </li>
+        <li class="post rise">
+          <span class="kind">视频 Video</span>
+          <a class="ptitle" href="#"><span class="ph">视频标题：比如「用 AI 做一张海报的全过程」</span></a>
+          <span class="pmeta2"><span class="ph">小红书 / B 站</span> · 08:30</span>
+          <time>20XX.XX.XX</time>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </li>
+        <li class="post rise">
+          <span class="kind">演讲 Talk</span>
+          <a class="ptitle" href="#"><span class="ph">分享标题：比如某次活动上的分享</span></a>
+          <span class="pmeta2"><span class="ph">活动名称</span> · 20 分钟</span>
+          <time>20XX.XX.XX</time>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </li>
+        <li class="post rise">
+          <span class="kind">文章 Article</span>
+          <a class="ptitle" href="#"><span class="ph">文章标题</span></a>
+          <span class="pmeta2"><span class="ph">平台</span> · 3 分钟阅读</span>
+          <time>20XX.XX.XX</time>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </li>
+        <li class="post rise">
+          <span class="kind">播客 Podcast</span>
+          <a class="ptitle" href="#"><span class="ph">节目标题</span></a>
+          <span class="pmeta2"><span class="ph">节目名称</span> · 45 分钟</span>
+          <time>20XX.XX.XX</time>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title rise">在这些地方找到我 <small>Elsewhere</small></h2>
+      <div class="channels">
+        <a class="channel rise" href="#"><b><span class="ph">小红书</span></b><span><span class="ph">@账号名</span></span></a>
+        <a class="channel rise" href="#"><b><span class="ph">公众号</span></b><span><span class="ph">账号名</span></span></a>
+        <a class="channel rise" href="#"><b><span class="ph">LinkedIn</span></b><span><span class="ph">账号名</span></span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap foot">
+    <span>© F.Sylvia · AI 产品经理 / 艺术家</span>
+    <span><a href="index.html">回到首页 Home</a> · <button type="button" data-copy="silviafsy01@gmail.com" style="background:none;border:0;text-decoration:underline;text-underline-offset:3px">silviafsy01@gmail.com</button></span>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>

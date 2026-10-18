@@ -147,6 +147,7 @@
   .pill small { font-size: .82em; opacity: .55; }
   .pill-solid { background: #fff; color: #000; border: 1px solid rgba(0,0,0,.1); }
   .pill-solid:hover { background: #000; color: #fff; }
+  .pill.tag:hover { background: #fff; color: #000; }   /* 个人标签只是展示，不会变色 */
   .pill-line { background: transparent; color: #fff; border: 1px solid #fff; gap: 8px; }
   .pill-line:hover { background: #fff; color: #000; }
   .pill-line u { text-underline-offset: 2px; }
@@ -201,22 +202,22 @@
       <span class="logo-star" aria-hidden="true">✳︎</span>
     </a>
     <div class="links">
-      <a href="#about">关于我<small>About</small></a><span>,&nbsp;</span>
-      <a href="#products">AI 产品<small>AI Products</small></a><span>,&nbsp;</span>
-      <a href="#art">艺术作品<small>Art</small></a><span>,&nbsp;</span>
-      <a href="#content">内容<small>Content</small></a>
+      <a href="about.html">关于我<small>About</small></a><span>,&nbsp;</span>
+      <a href="products.html">AI 产品<small>AI Products</small></a><span>,&nbsp;</span>
+      <a href="art.html">艺术作品<small>Art</small></a><span>,&nbsp;</span>
+      <a href="content.html">内容<small>Content</small></a>
     </div>
-    <a class="cta" href="#contact">联系我<small>Contact</small></a>
+    <a class="cta" href="about.html#contact">联系我<small>Contact</small></a>
     <button class="burger" id="burger" aria-label="打开菜单 Menu"><span></span><span></span><span></span></button>
   </nav>
 
   <!-- 手机端菜单 -->
   <div class="overlay m-links" id="overlay">
-    <a href="#about">关于我<small>About</small></a>
-    <a href="#products">AI 产品<small>AI Products</small></a>
-    <a href="#art">艺术作品<small>Art</small></a>
-    <a href="#content">内容<small>Content</small></a>
-    <a href="#contact" class="u">联系我<small>Contact</small></a>
+    <a href="about.html">关于我<small>About</small></a>
+    <a href="products.html">AI 产品<small>AI Products</small></a>
+    <a href="art.html">艺术作品<small>Art</small></a>
+    <a href="content.html">内容<small>Content</small></a>
+    <a href="about.html#contact" class="u">联系我<small>Contact</small></a>
   </div>
 
   <!-- 首屏 -->
@@ -234,10 +235,10 @@
       </p>
 
       <div class="pills" id="pills">
-        <a class="pill pill-solid" href="#products">试试我的 AI 产品 <small>AI Products</small></a>
-        <a class="pill pill-solid" href="#art">逛逛艺术作品 <small>Art</small></a>
-        <a class="pill pill-solid" href="#content">看看我的思考 <small>My Perspective</small></a>
-        <a class="pill pill-solid" href="#about">认识一下我 <small>About me</small></a>
+        <span class="pill pill-solid tag">AI 产品经理 <small>AI Product Manager</small></span>
+        <span class="pill pill-solid tag">艺术家 <small>Artist</small></span>
+        <span class="pill pill-solid tag">审美驱动 <small>Taste-driven</small></span>
+        <span class="pill pill-solid tag">从 0 到 1 <small>Zero to One</small></span>
         <button class="pill pill-line" id="copyBtn" type="button">
           <span id="copyLabel">写信给我：<u>silviafsy01@gmail.com</u></span>
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">

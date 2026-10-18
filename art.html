@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>艺术作品 — F.Sylvia</title>
+<meta name="description" content="Sylvia 的艺术作品：艺术、羊毛毡、插画。" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg" />
+<link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="logo" href="index.html">
+      <span class="logo-text">F.Sylvia®</span>
+      <span class="logo-star" aria-hidden="true">✳︎</span>
+    </a>
+    <div class="links">
+      <a href="about.html">关于我<small>About</small></a><span>,&nbsp;</span>
+      <a href="products.html">AI 产品<small>AI Products</small></a><span>,&nbsp;</span>
+      <a href="art.html" class="active" aria-current="page">艺术作品<small>Art</small></a><span>,&nbsp;</span>
+      <a href="content.html">内容<small>Content</small></a>
+    </div>
+    <a class="cta" href="about.html#contact">联系我<small>Contact</small></a>
+    <button class="burger" id="burger" aria-label="打开菜单 Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="overlay m-links" id="overlay">
+    <a href="index.html">首页<small>Home</small></a>
+    <a href="about.html">关于我<small>About</small></a>
+    <a href="products.html">AI 产品<small>AI Products</small></a>
+    <a href="art.html">艺术作品<small>Art</small></a>
+    <a href="content.html">内容<small>Content</small></a>
+    <a href="about.html#contact" class="u">联系我<small>Contact</small></a>
+  </div>
+
+  <main class="wrap">
+
+    <style>
+      .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 32px 0 8px; }
+      .filters button { font-size: 14px; padding: 6px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.5); background: transparent; transition: background-color .2s, color .2s; }
+      .filters button[aria-pressed="true"], .filters button:hover { background: #fff; color: #000; }
+      .masonry { columns: 1; column-gap: 24px; padding: 32px 0 16px; }
+      @media (min-width: 620px) { .masonry { columns: 2; } }
+      @media (min-width: 1000px) { .masonry { columns: 3; } }
+      .tile { break-inside: avoid; margin: 0 0 28px; }
+      .tile .ph-img { border-radius: 14px; transition: transform .4s ease; }
+      .tile:hover .ph-img { transform: scale(1.015); }
+      .tile figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; font-size: 14px; }
+      .tile figcaption span:last-child { color: var(--muted); white-space: nowrap; }
+      .tile.hide { display: none; }
+      .statement { max-width: 40em; font-size: clamp(19px, 2.4vw, 24px); line-height: 1.55; }
+    </style>
+
+    <header class="page-head">
+      <p class="eyebrow rise">Art · 艺术作品</p>
+      <h1 class="page-title rise">艺术作品<small>Art, felt and everything in between</small></h1>
+      <p class="lede rise">做产品之外，我一直在做艺术。<span class="ph">一句话介绍你的创作方向和材料。</span>
+        <span class="en">Outside of products, I make art. <span class="ph">One line on your practice.</span></span></p>
+      <p class="ph-note">✎ 占位内容 · 之后替换成真实内容</p>
+      <div class="filters rise" role="group" aria-label="按类别筛选">
+        <button type="button" aria-pressed="true" data-f="all">全部 All</button>
+        <button type="button" aria-pressed="false" data-f="艺术">艺术 Art</button>
+        <button type="button" aria-pressed="false" data-f="羊毛毡">羊毛毡 Felt</button>
+        <button type="button" aria-pressed="false" data-f="插画">插画 Illustration</button>
+        <button type="button" aria-pressed="false" data-f="综合材料">综合材料 Mixed</button>
+      </div>
+    </header>
+
+    <section>
+      <div class="masonry">
+        <figure class="tile rise" data-kind="艺术">
+          <div class="ph-img" style="aspect-ratio:3 / 4" data-label="作品图 · Artwork 01"></div>
+          <figcaption><span><span class="ph">作品名称</span></span><span>艺术 Art · 20XX</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="羊毛毡">
+          <div class="ph-img" style="aspect-ratio:1 / 1" data-label="作品图 · Artwork 02"></div>
+          <figcaption><span><span class="ph">作品名称</span></span><span>羊毛毡 Felt · 20XX</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="插画">
+          <div class="ph-img" style="aspect-ratio:4 / 5" data-label="作品图 · Artwork 03"></div>
+          <figcaption><span><span class="ph">作品名称</span></span><span>插画 Illustration · 20XX</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="艺术">
+          <div class="ph-img" style="aspect-ratio:4 / 3" data-label="作品图 · Artwork 04"></div>
+          <figcaption><span><span class="ph">作品名称</span></span><span>艺术 Art · 20XX</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="羊毛毡">
+          <div class="ph-img" style="aspect-ratio:3 / 4" data-label="作品图 · Artwork 05"></div>
+          <figcaption><span><span class="ph">作品名称</span></span><span>羊毛毡 Felt · 20XX</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="综合材料">
+          <div class="ph-img" style="aspect-ratio:1 / 1" data-label="作品图 · Artwork 06"></div>
+          <figcaption><span><span class="ph">作品名称</span></span><span>综合材料 Mixed · 20XX</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="艺术">
+          <div class="ph-img" style="aspect-ratio:4 / 5" data-label="作品图 · Artwork 07"></div>
+          <figcaption><span><span class="ph">作品名称</span></span><span>艺术 Art · 20XX</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="插画">
+          <div class="ph-img" style="aspect-ratio:3 / 4" data-label="作品图 · Artwork 08"></div>
+          <figcaption><span><span class="ph">作品名称</span></span><span>插画 Illustration · 20XX</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="羊毛毡">
+          <div class="ph-img" style="aspect-ratio:4 / 3" data-label="作品图 · Artwork 09"></div>
+          <figcaption><span><span class="ph">作品名称</span></span><span>羊毛毡 Felt · 20XX</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title rise">创作自述 <small>Artist statement</small></h2>
+      <p class="statement rise"><span class="ph">这里写一段创作自述：你为什么做艺术，艺术和你做 AI 产品之间有什么联系。</span></p>
+    </section>
+
+    <script>
+      (function () {
+        var btns = document.querySelectorAll('.filters button');
+        btns.forEach(function (b) {
+          b.addEventListener('click', function () {
+            btns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+            var f = b.getAttribute('data-f');
+            document.querySelectorAll('.tile').forEach(function (t) {
+              var show = f === 'all' || t.getAttribute('data-kind') === f;
+              t.classList.toggle('hide', !show);
+              if (show) t.classList.add('in');
+            });
+          });
+        });
+      })();
+    </script>
+
+  </main>
+
+  <footer class="wrap foot">
+    <span>© F.Sylvia · AI 产品经理 / 艺术家</span>
+    <span><a href="index.html">回到首页 Home</a> · <button type="button" data-copy="silviafsy01@gmail.com" style="background:none;border:0;text-decoration:underline;text-underline-offset:3px">silviafsy01@gmail.com</button></span>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>

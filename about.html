@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>关于我 — F.Sylvia</title>
+<meta name="description" content="Sylvia：艺术家出身的 AI 产品经理。关于我、经历与联系方式。" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg" />
+<link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="logo" href="index.html">
+      <span class="logo-text">F.Sylvia®</span>
+      <span class="logo-star" aria-hidden="true">✳︎</span>
+    </a>
+    <div class="links">
+      <a href="about.html" class="active" aria-current="page">关于我<small>About</small></a><span>,&nbsp;</span>
+      <a href="products.html">AI 产品<small>AI Products</small></a><span>,&nbsp;</span>
+      <a href="art.html">艺术作品<small>Art</small></a><span>,&nbsp;</span>
+      <a href="content.html">内容<small>Content</small></a>
+    </div>
+    <a class="cta" href="about.html#contact">联系我<small>Contact</small></a>
+    <button class="burger" id="burger" aria-label="打开菜单 Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="overlay m-links" id="overlay">
+    <a href="index.html">首页<small>Home</small></a>
+    <a href="about.html">关于我<small>About</small></a>
+    <a href="products.html">AI 产品<small>AI Products</small></a>
+    <a href="art.html">艺术作品<small>Art</small></a>
+    <a href="content.html">内容<small>Content</small></a>
+    <a href="about.html#contact" class="u">联系我<small>Contact</small></a>
+  </div>
+
+  <main class="wrap">
+
+    <style>
+      .about-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: end; padding: 56px 0 48px; border-bottom: 1px solid var(--line); }
+      @media (min-width: 900px) { .about-hero { grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); } }
+      .about-hero > * { min-width: 0; }
+      .doll { width: 100%; max-width: 380px; height: auto; margin-left: auto; filter: drop-shadow(0 24px 40px rgba(40, 0, 4, .45)); }
+      .facts { display: grid; gap: 0; grid-template-columns: 1fr; }
+      @media (min-width: 720px) { .facts { grid-template-columns: repeat(2, 1fr); column-gap: 48px; } }
+      .fact { display: grid; grid-template-columns: 7.5em 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+      .fact dt { color: var(--muted); font-size: 14px; }
+      .timeline { list-style: none; }
+      .timeline li { display: grid; grid-template-columns: 1fr; gap: 6px 32px; padding: 22px 0; border-top: 1px solid var(--line); }
+      @media (min-width: 720px) { .timeline li { grid-template-columns: 10em 1fr auto; align-items: baseline; } }
+      .timeline .when { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 14px; }
+      .timeline h3 { font-family: var(--font-heading); font-weight: 500; font-size: 20px; }
+      .timeline p { color: var(--muted); font-size: 15px; margin-top: 4px; }
+      .skills { display: grid; gap: 20px; grid-template-columns: 1fr; }
+      @media (min-width: 720px) { .skills { grid-template-columns: repeat(3, 1fr); } }
+      .skill { border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
+      .skill h3 { font-family: var(--font-heading); font-weight: 500; font-size: 19px; margin-bottom: 12px; }
+      .contact-card { display: grid; gap: 24px; padding: 36px; border-radius: 24px; background: var(--cream); color: var(--ink); }
+      @media (min-width: 720px) { .contact-card { grid-template-columns: 1fr auto; align-items: center; } }
+      .contact-card h2 { font-family: var(--font-heading); font-weight: 500; font-size: clamp(26px, 4vw, 40px); letter-spacing: -0.02em; }
+      .contact-card p { color: #6b4a4c; margin-top: 6px; }
+      .contact-card .btn { background: var(--red); border-color: var(--red); color: #fff; }
+      .contact-card .btn:hover { background: var(--ink); border-color: var(--ink); }
+      .contact-card .btn.line { background: transparent; color: var(--ink); border-color: var(--ink); }
+      .contact-card .btn.line:hover { background: var(--ink); color: #fff; }
+      .contact-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    </style>
+
+    <header class="about-hero">
+      <div class="rise">
+        <p class="eyebrow">About · 关于我</p>
+        <h1 class="page-title">你好，<br>我是 Sylvia<small>AI Product Manager &amp; Artist</small></h1>
+        <p class="lede">一个艺术家出身的 AI 产品经理。<span class="ph">这里写 2–3 句话的自我介绍：你是谁、在做什么、相信什么。</span>
+          <span class="en">An AI product manager with an artist's eye. <span class="ph">Your intro in English goes here.</span></span></p>
+        <p class="ph-note">✎ 占位内容 · 之后替换成真实内容</p>
+      </div>
+      <img class="doll rise" src="assets/doll.webp" alt="Sylvia 的羊毛毡玩偶形象" width="622" height="760" />
+    </header>
+
+    <section class="section">
+      <h2 class="section-title rise">基本信息 <small>At a glance</small></h2>
+      <dl class="facts rise">
+        <div class="fact"><dt>现在</dt><dd><span class="ph">公司 / 职位</span></dd></div>
+        <div class="fact"><dt>所在城市</dt><dd><span class="ph">城市</span></dd></div>
+        <div class="fact"><dt>专注方向</dt><dd><span class="ph">例如：AIGC 工具、创作者产品</span></dd></div>
+        <div class="fact"><dt>语言</dt><dd><span class="ph">中文 / English / …</span></dd></div>
+        <div class="fact"><dt>教育背景</dt><dd><span class="ph">学校 · 专业</span></dd></div>
+        <div class="fact"><dt>正在寻找</dt><dd><span class="ph">想要的机会，例如：欧洲 AI 产品岗位</span></dd></div>
+      </dl>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title rise">经历 <small>Experience</small></h2>
+      <ol class="timeline">
+        <li class="rise"><span class="when">20XX — 至今</span><div><h3><span class="ph">公司名称</span> · <span class="ph">职位</span></h3><p><span class="ph">一句话写你负责什么、做出了什么结果。</span></p></div><div class="chips"><span class="chip">AI 产品</span></div></li>
+        <li class="rise"><span class="when">20XX — 20XX</span><div><h3><span class="ph">公司名称</span> · <span class="ph">职位</span></h3><p><span class="ph">一句话写你负责什么、做出了什么结果。</span></p></div><div class="chips"><span class="chip">产品</span></div></li>
+        <li class="rise"><span class="when">20XX — 20XX</span><div><h3><span class="ph">学校 / 艺术经历</span></h3><p><span class="ph">艺术背景如何影响你做产品的方式。</span></p></div><div class="chips"><span class="chip">艺术</span></div></li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title rise">我擅长 <small>What I do</small></h2>
+      <div class="skills">
+        <div class="skill rise"><h3>AI 产品</h3><div class="chips"><span class="chip"><span class="ph">需求洞察</span></span><span class="chip"><span class="ph">Prompt 设计</span></span><span class="chip"><span class="ph">模型评测</span></span></div></div>
+        <div class="skill rise"><h3>设计与审美</h3><div class="chips"><span class="chip"><span class="ph">视觉判断</span></span><span class="chip"><span class="ph">交互原型</span></span><span class="chip"><span class="ph">品牌感</span></span></div></div>
+        <div class="skill rise"><h3>艺术创作</h3><div class="chips"><span class="chip"><span class="ph">艺术</span></span><span class="chip"><span class="ph">羊毛毡</span></span><span class="chip"><span class="ph">插画</span></span></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="contact-card rise">
+        <div>
+          <h2>一起做点什么？</h2>
+          <p>Let's build something together. <span class="ph" style="color:#8c0712;background:rgba(140,7,18,.08)">简历 PDF 之后放这里</span></p>
+        </div>
+        <div class="contact-actions">
+          <button class="btn" type="button" data-copy="silviafsy01@gmail.com">复制邮箱 Copy email</button>
+          <a class="btn line" href="#">下载简历 Resume</a>
+          <a class="btn line" href="#">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap foot">
+    <span>© F.Sylvia · AI 产品经理 / 艺术家</span>
+    <span><a href="index.html">回到首页 Home</a> · <button type="button" data-copy="silviafsy01@gmail.com" style="background:none;border:0;text-decoration:underline;text-underline-offset:3px">silviafsy01@gmail.com</button></span>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>
