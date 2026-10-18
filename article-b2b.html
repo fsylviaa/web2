@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>B端产品定位：当“入侵者”真的来了 — F.Sylvia</title>
+<meta name="description" content="当 AI 作为入侵者和替代者杀进产业链，B 端产品的定位还站得住吗？四个老维度、一个新变量和三条路。" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg" />
+<link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="logo" href="index.html">
+      <span class="logo-text">F.Sylvia®</span>
+      <span class="logo-star" aria-hidden="true">✳︎</span>
+    </a>
+    <div class="links">
+      <a href="about.html">关于我<small>About</small></a><span>,&nbsp;</span>
+      <a href="products.html">AI 产品<small>AI Products</small></a><span>,&nbsp;</span>
+      <a href="art.html">艺术作品<small>Art</small></a><span>,&nbsp;</span>
+      <a href="content.html" class="active" aria-current="page">内容<small>Content</small></a>
+    </div>
+    <a class="cta" href="about.html#contact">联系我<small>Contact</small></a>
+    <button class="burger" id="burger" aria-label="打开菜单 Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="overlay m-links" id="overlay">
+    <a href="index.html">首页<small>Home</small></a>
+    <a href="about.html">关于我<small>About</small></a>
+    <a href="products.html">AI 产品<small>AI Products</small></a>
+    <a href="art.html">艺术作品<small>Art</small></a>
+    <a href="content.html">内容<small>Content</small></a>
+    <a href="about.html#contact" class="u">联系我<small>Contact</small></a>
+  </div>
+
+  <main class="wrap">
+
+    <style>
+      .art-head { padding: 56px 0 40px; max-width: 860px; }
+      .back { display: inline-flex; gap: 8px; font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+      .back:hover { color: #fff; }
+      .art-title { font-family: var(--font-heading); font-weight: 500; font-size: clamp(30px, 5vw, 54px); line-height: 1.18; letter-spacing: -0.02em; text-wrap: balance; }
+      .art-meta { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 22px; color: var(--muted); font-size: 14px; }
+      .art-card { background: var(--cream); color: #2a1416; border-radius: 28px; padding: clamp(28px, 6vw, 72px) clamp(20px, 7vw, 96px); margin-bottom: 56px; }
+      .art-body { max-width: 40em; margin: 0 auto; font-size: 17.5px; line-height: 1.95; }
+      .art-body p { margin: 0 0 1.15em; }
+      .art-body > p:first-child { font-size: 1.12em; color: #8c0712; }
+      .art-body h2 { font-family: var(--font-heading); font-weight: 500; font-size: clamp(22px, 2.8vw, 27px); line-height: 1.35; letter-spacing: -0.01em; color: #8c0712; margin: 2.2em 0 .9em; padding-top: 1.2em; border-top: 1px solid rgba(140, 7, 18, .16); }
+      .art-body ul { margin: 0 0 1.3em; padding-left: 0; list-style: none; }
+      .art-body li { position: relative; padding-left: 1.4em; margin-bottom: .55em; }
+      .art-body li::before { content: ""; position: absolute; left: .2em; top: .82em; width: 7px; height: 7px; border-radius: 50%; background: #c7202b; }
+      .art-body li p { margin: 0; }
+      .art-body strong { color: #8c0712; font-weight: 600; }
+      .art-body .pull { font-family: var(--font-heading); font-size: 1.3em; line-height: 1.5; color: #8c0712; border-left: 3px solid #c7202b; padding: .2em 0 .2em 1em; margin: 1.4em 0; }
+      .art-fig { margin: 2em -2%; }
+      .art-fig img { width: 100%; height: auto; border-radius: 16px; box-shadow: 0 18px 40px -18px rgba(80, 0, 10, .45); }
+      .art-body > p:last-of-type { font-weight: 600; }
+      .art-foot { max-width: 40em; margin: 3em auto 0; padding-top: 1.6em; border-top: 1px solid rgba(140, 7, 18, .16); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; font-size: 15px; color: #6b4a4c; }
+      .art-foot .btn { background: var(--red); border-color: var(--red); color: #fff; }
+      .art-foot .btn:hover { background: var(--ink); border-color: var(--ink); }
+      @media (max-width: 600px) { .art-body { font-size: 16.5px; line-height: 1.9; } .art-fig { margin: 1.6em 0; } }
+    </style>
+
+    <header class="art-head">
+      <a class="back" href="content.html">← 返回内容 Back to Content</a>
+      <p class="eyebrow">文章 Article · 产品思考</p>
+      <h1 class="art-title">B端产品定位：当“入侵者”真的来了</h1>
+      <div class="art-meta"><span>Sylvia</span><time>发布于 2024.09</time><span>约 8 分钟阅读</span><span>B 端 · 产品定位 · 竞品分析</span></div>
+    </header>
+
+    <article class="art-card">
+      <div class="art-body">
+<p>今年开年，B端产品经理的日子不好过：客户预算一砍再砍，续费谈一次比一次难；另一边，AI 以“百模大战”后的应用姿态杀进来，见单就抢。产品定位这个老话题，在今年有了新问法——当入侵者真的来了，你的定位还站得住吗？</p>
+<p>所谓入侵者，就是那些带着钱、带着技术，“蛮不讲理”地杀进你产业链的玩家。现在，这个概念有了具体的名字：AI。</p>
+<figure class="art-fig"><img src="assets/posts/b2b-1.webp" alt="一个人站在落地窗前，望着窗外被科技光环笼罩的城市" loading="lazy" width="1400" height="933" /></figure>
+<h2>一、为什么现在，“定位”比“功能”更要命</h2>
+<p>经济好的时候，定位错了，靠市场增量还能活；现在增量没了，定位错了就是慢性死亡。</p>
+<p>很多 B 端团队今年的真实写照是：客户说“我要一个 AI 功能”，团队吭哧吭哧三个月做出来，客户说“哦，挺好”，然后就没有然后了——不续费、不增购。这就是典型的“项目定位”：没有经过机会判断，直接凭经验开干。 区别在于，以前这么干只是“扩展性受限”，现在这么干是“直接没有第二年”。</p>
+<p>产品经理的第一职责是评估机会，第二才是定义要开发的产品。这句话今年要加粗三遍：因为机会本身在快速消失——AI 正在把很多“机会”变成“遗迹”。</p>
+<h2>二、入侵者从理论变成了现实</h2>
+<p>竞争对手分两种：看得见的（领先者、追随者、淘汰者）和看不见的（入侵者、替代者）。今年，这套分类法依然好用，只是主语换成了 AI。</p>
+<p>AI 是最标准的“跨界入侵者”：资金雄厚（大厂几十亿地烧）、技术领先、打法“蛮不讲理”——它不跟你拼功能，它直接把你的整条价值链重做一遍。客服 SaaS 的护城河是话术库和坐席管理，AI 客服一来，话术库不值钱了；营销 SaaS 的护城河是模板和素材，AIGC 一来，模板不值钱了。入侵者从不攻击你的长板，它让你的长板贬值。</p>
+<p>AI 也是最彻底的“替代者”：线上支付冲击最大的不是银行，是造假币的；AI 编程助手冲击最大的不是程序员，是外包公司；AI 法律助手冲击最大的不是律师，是合同模板生意。替代者杀人不见血，因为它替代的往往不是你的直接竞品，而是你产业链里“以为很稳”的一环。</p>
+<p>所以今年做竞品分析，表格里必须加两行：“AI 会不会把我这一环吃掉？”和“吃掉我的会是哪个大厂、哪家 AI 原生公司？” 答不上来这两行，定位就是裸奔。</p>
+<figure class="art-fig"><img src="assets/posts/b2b-2.webp" alt="一个由烟雾组成的巨大机器人笼罩在旧工业小镇上空" loading="lazy" width="1400" height="933" /></figure>
+<h2>三、找定位：四个老维度，一个新变量</h2>
+<p>市场分析、产业链层级、风险、竞品、趋势——这套框架依然成立，但每个维度都要加一个 AI 变量。</p>
+<p><strong>市场分析，加一条：这个市场还有多少“AI 渗透前的窗口期”。</strong> 看规模、看趋势之外，要看 AI 在这个领域的渗透率曲线。渗透率还低、但技术已就绪的市场，是最后的窗口期——比如今年的 AI 教育硬件、AI 招聘；渗透率已经很高的市场（AI 客服、AI 营销），进去就是红海，得掂量自己的差异化够不够硬。</p>
+<p><strong>产业链风险分析，“技术革新”从“可能”变成“正在发生”。</strong> 四大风险（商业模式变革、技术革新、用户流失、政策变化）里，今年要把“技术革新”标红：它不再是远期风险，而是当期损益。K12 的教训是政策一夜之间重构产业链；今年的教训是，技术一夜之间重构产业链的速度，比政策更快。 Sora 发布那天，多少视频工具团队开了紧急会，就是例证。</p>
+<p>但有一句话依然有效：“产业链崩溃不是灾难，而是重构；重构意味着新产业链、新机会、新蛋糕。” 今年，AI 客服重构了客服产业链，跑出了新的质检、训练、数据服务环节；AI 编程重构了软件外包，跑出了 AI 代码审计、提示词工程服务。每一次“吃掉”，都伴随一次“长出”。找定位的人，要站在“长出”的那一边。</p>
+<p><strong>竞品分析，核心竞争力要重估。</strong> 技术、价格、客户关系、供应商、流量、资金、政策——今年要加一个灵魂拷问：你的核心竞争力里，有多少是 AI 一夜之间能抹平的？ 技术优势？大模型 API 人人可调。价格优势？AI 把边际成本打到接近零。剩下真正难抹平的，是客户关系、行业 know-how、交付实施能力——也就是那些“脏活累活”。今年的护城河，恰恰在 AI 不愿意干的地方。</p>
+<p><strong>趋势分析，产业链三阶段（初创、整合、细分）正在被 AI 压缩。</strong> 以前一个阶段走五年，现在可能走一年。趋势判断的窗口期变短，意味着定位不能再是“三年规划”，而要是“一年一定位、半年一复盘”。</p>
+<figure class="art-fig"><img src="assets/posts/b2b-3.webp" alt="一条路分成三条：通向深耕的田地、AI 工厂和出海的港口" loading="lazy" width="1400" height="933" /></figure>
+<h2>四、B端的三条路</h2>
+<p>综合以上分析，今年 B 端产品的定位，大致收敛成三条路：</p>
+<p><strong>第一条：垂类深耕，做 AI 做不好的脏活累活。</strong> 医疗、法律、财税、工业——这些领域的 know-how、合规、交付实施，是大模型短期内啃不动的硬骨头。定位逻辑：我不跟 AI 拼聪明，我拼“最后一公里”。客户要的不是一个聪明的模型，是一个能落地、敢担责的解决方案。</p>
+<p><strong>第二条：AI 原生重做，用 AI 重做一条旧产业链。</strong> 不是“给旧产品加 AI 功能”，而是假设 AI 是水电，从零设计流程。AI 客服不是“客服系统+语音识别”，而是“先有 AI 坐席，再配人工兜底”；AI 营销不是“素材库+生成”，而是“输入目标，输出投放”。这条路最性感，也最难——要同时懂旧产业链和新技术。</p>
+<p><strong>第三条：出海，出去找增量。</strong> 国内 B 端预算收紧、AI 内卷，但东南亚、中东、拉美的数字化还在早期。把国内验证过的产品能力平移出去，用代差换市场。这条路拼的是本地化和渠道，不是技术。</p>
+<p>三条路没有高下，只有匹配：看你的资源禀赋，看你的团队基因，看你能承受的风险。 选错路比不选更惨——拿着深耕的团队去做 AI 原生重做，等于让步兵去开飞机。</p>
+<h2>五、痛点四问，今年加一问</h2>
+<p>找机会点的经典四问依然好用：行业整体流程是什么？关键节点和场景在哪？有没有优化空间？上下游愿不愿为优化付费？今年加第五问：</p>
+<p class="pull">这条流程会不会被 AI 吃掉？如果会，你是吃人的那个，还是被吃的那块？</p>
+<p>这个问题把“定位”和“生存”焊在了一起。答“我是吃人的那个”，那就 All in AI 原生重做；答“我这块 AI 吃不动”，那就深耕垂类、把脏活做到极致；答“不知道”，那先别谈定位，先去一线看三个月。</p>
+<h2>结尾</h2>
+<p>站在风口，猪也能飞起来。但飞起来的猪一定是有翅膀的猪，归根结底还是产品本身是关键。</p>
+<p>今年可以这么续：风口变成了龙卷风，翅膀变成了“离客户真实工作流的距离”。 AI 抹平了技术代差，抹不平的是你对客户业务的理解、你在产业链里扎的根、你替客户扛过的那些实施交付的夜。</p>
+<p>定位，从来不是分析出来的，是在正确的战场上，用正确的姿势，替客户解决真问题——今年，只是把“正确”二字的标准，提高到了历史最高。</p>
+
+      </div>
+      <div class="art-foot">
+        <span>读到这里，想聊聊产品？</span>
+        <button class="btn" type="button" data-copy="silviafsy01@gmail.com">复制邮箱 Copy email</button>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="wrap foot">
+    <span>© F.Sylvia · AI 产品经理 / 艺术家</span>
+    <span><a href="index.html">回到首页 Home</a> · <button type="button" data-copy="silviafsy01@gmail.com" style="background:none;border:0;text-decoration:underline;text-underline-offset:3px">silviafsy01@gmail.com</button></span>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>
