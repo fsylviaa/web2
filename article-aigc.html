@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AIGC的下半场：三年前那三个预言，答卷出来了 — F.Sylvia</title>
+<meta name="description" content="回看 2023 年《AIGC的中场战事》的三个预言：AGI、API 长尾化、操作系统化，以及下半场的三场新战事。" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg" />
+<link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="logo" href="index.html">
+      <span class="logo-text">F.Sylvia®</span>
+      <span class="logo-star" aria-hidden="true">✳︎</span>
+    </a>
+    <div class="links">
+      <a href="about.html">关于我<small>About</small></a><span>,&nbsp;</span>
+      <a href="products.html">AI 产品<small>AI Products</small></a><span>,&nbsp;</span>
+      <a href="art.html">艺术作品<small>Art</small></a><span>,&nbsp;</span>
+      <a href="content.html" class="active" aria-current="page">内容<small>Content</small></a>
+    </div>
+    <a class="cta" href="about.html#contact">联系我<small>Contact</small></a>
+    <button class="burger" id="burger" aria-label="打开菜单 Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="overlay m-links" id="overlay">
+    <a href="index.html">首页<small>Home</small></a>
+    <a href="about.html">关于我<small>About</small></a>
+    <a href="products.html">AI 产品<small>AI Products</small></a>
+    <a href="art.html">艺术作品<small>Art</small></a>
+    <a href="content.html">内容<small>Content</small></a>
+    <a href="about.html#contact" class="u">联系我<small>Contact</small></a>
+  </div>
+
+  <main class="wrap">
+
+    <style>
+      .art-head { padding: 56px 0 40px; max-width: 860px; }
+      .back { display: inline-flex; gap: 8px; font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+      .back:hover { color: #fff; }
+      .art-title { font-family: var(--font-heading); font-weight: 500; font-size: clamp(30px, 5vw, 54px); line-height: 1.18; letter-spacing: -0.02em; text-wrap: balance; }
+      .art-meta { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 22px; color: var(--muted); font-size: 14px; }
+      .art-card { background: var(--cream); color: #2a1416; border-radius: 28px; padding: clamp(28px, 6vw, 72px) clamp(20px, 7vw, 96px); margin-bottom: 56px; }
+      .art-body { max-width: 40em; margin: 0 auto; font-size: 17.5px; line-height: 1.95; }
+      .art-body p { margin: 0 0 1.15em; }
+      .art-body > p:first-child { font-size: 1.12em; color: #8c0712; }
+      .art-body h2 { font-family: var(--font-heading); font-weight: 500; font-size: clamp(22px, 2.8vw, 27px); line-height: 1.35; letter-spacing: -0.01em; color: #8c0712; margin: 2.2em 0 .9em; padding-top: 1.2em; border-top: 1px solid rgba(140, 7, 18, .16); }
+      .art-body ul { margin: 0 0 1.3em; padding-left: 0; list-style: none; }
+      .art-body li { position: relative; padding-left: 1.4em; margin-bottom: .55em; }
+      .art-body li::before { content: ""; position: absolute; left: .2em; top: .82em; width: 7px; height: 7px; border-radius: 50%; background: #c7202b; }
+      .art-body li p { margin: 0; }
+      .art-body strong { color: #8c0712; font-weight: 600; }
+      .art-fig { margin: 2em -2%; }
+      .art-fig img { width: 100%; height: auto; border-radius: 16px; box-shadow: 0 18px 40px -18px rgba(80, 0, 10, .45); }
+      .art-body > p:last-of-type { font-weight: 600; }
+      .art-foot { max-width: 40em; margin: 3em auto 0; padding-top: 1.6em; border-top: 1px solid rgba(140, 7, 18, .16); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; font-size: 15px; color: #6b4a4c; }
+      .art-foot .btn { background: var(--red); border-color: var(--red); color: #fff; }
+      .art-foot .btn:hover { background: var(--ink); border-color: var(--ink); }
+      @media (max-width: 600px) { .art-body { font-size: 16.5px; line-height: 1.9; } .art-fig { margin: 1.6em 0; } }
+    </style>
+
+    <header class="art-head">
+      <a class="back" href="content.html">← 返回内容 Back to Content</a>
+      <p class="eyebrow">文章 Article · 行业观察</p>
+      <h1 class="art-title">AIGC的下半场：三年前那三个预言，答卷出来了</h1>
+      <div class="art-meta"><span>Sylvia</span><span>约 7 分钟阅读</span><span>AIGC · Agent · 行业趋势</span></div>
+    </header>
+
+    <article class="art-card">
+      <div class="art-body">
+<p>2023年3月，《AIGC的中场战事》提出三个可能的未来：AGI、API长尾化、操作系统化。三年半过去，中场哨响了。我们站在下半场的开球点上，回头给那三个预言打分，顺便看看新的战事打在哪里。</p>
+<figure class="art-fig"><img src="assets/posts/aigc-1.webp" alt="迷雾中的足球场，一颗发光的足球正被开出" loading="lazy" width="1400" height="933" /></figure>
+
+<h2>01 三个预言的答卷</h2>
+<p><strong>API长尾化：满分。</strong> 这是命中最准的一个。垂类智能体没有几十万个那么夸张，但方向完全正确——Agent 成了这三年最大的变量。从营销文案到代码助手，从客服到数据分析，AI 不再以“一个全能聊天框”的形态存在，而是钻进各行各业的具体工作流里。原文那句“垂类智慧体之间的关系有点像现在的人类社会”，今天看依然贴切：不同的 Agent 开始相互调用、协作，形成分工。</p>
+<p><strong>操作系统化：部分应验。</strong> AI 确实进入了操作系统——Apple Intelligence 进了 iPhone，Copilot 进了 Windows，Gemini 塞进安卓全家桶。但后半句没应验：“留足 App 生存空间”的温情剧本没有上演。现实更残酷：AI 没有满足于做“透明底层”，它直接想成为入口。原来是 App 加 AI，现在是 AI 加 App。</p>
+<p><strong>AGI：以另一种形式“糖纸化”了。</strong> 通用人工智能还没来，但“大模型吃掉一切”的担忧换了个马甲实现——不是 AGI 垄断一切，而是基础模型厂商自己下场做应用。OpenAI 做视频、做智能体，Google 把 Gemini 铺满全产品线，应用层公司被上下挤压：往上拼不过模型能力，往下守不住用户入口。当年担心的“最高级别垄断压缩创新”，变成了“模型厂商既当裁判又当运动员”。</p>
+
+<figure class="art-fig"><img src="assets/posts/aigc-2.webp" alt="三扇不同的门通向不同的路" loading="lazy" width="1400" height="933" /></figure>
+
+<h2>02 当年“找不到落地场景”，现在找到了吗</h2>
+<p>找到了，但不是当初想的那些。</p>
+<p>原文说新晋公司“迟迟找不到落地场景”，还点名“AIGC+剧本杀、AIGC+游戏的用户需求真实性值得商榷”。三年后再看：剧本杀们确实死了，但死的姿势值得玩味——不是 AI 不行，是场景找错了。 真正活下来的场景，恰恰是原文相对悲观的“文生文”：AI 写代码成了程序员标配（Claude Code、Codex 进了生产环境），AI 写营销内容养活了一批公司，AI 客服替换了大量人力。原文判“过于小、过于碎片化”的文生文，反而成了最大的蛋糕。这是那篇文章唯一的重大误判，也最有启发：评判场景大小的不是技术形态，而是它替代了哪条工作流。</p>
+<p>“换皮”的预言则精准命中：2023 年那批套壳 ChatGPT 的产品，几乎团灭。但有意思的是，“套壳+工作流”活下来了——同样是调 API，加上对某条工作流的深度理解（比如 Jasper 当年对营销文案的优化），就能活。死和活的分界线从来不是“有没有自己的模型”，而是“有没有替用户完成一件事”。</p>
+<p>当年提出的三个判断标准——替代工作流、和大模型的结合、有用户需求——今天依然是检验 AI 项目的黄金三问，一个都没过时。</p>
+<h2>03 新的中场：三场新战事</h2>
+<p>下半场的战事，换了三个战场。</p>
+<p><strong>第一场：成本战。</strong> 这是三年前没人料到的主线。DeepSeek 把推理价格一路打下来：V4.1-Flash-1017 输入 $0.15/百万 token、输出 $0.60，搜索 API $0.75/千次，还限时免费。当智能的价格趋向水电费，竞争逻辑就变了——以前比“谁更聪明”，现在比“谁在足够聪明的前提下更便宜”。成本下降还带来一个连锁反应：原来算不过来账的场景（比如全量代码审查、7×24 小时客服），突然算得过账了，场景边界被成本重划了一遍。</p>
+
+<figure class="art-fig"><img src="assets/posts/aigc-3.webp" alt="成片的价格标签悬在服务器机房上方" loading="lazy" width="1400" height="933" /></figure>
+
+<p><strong>第二场：开源与管制。</strong> 中国开源模型这两年在全球开发者中用得太多，多到引发了反向筑墙：2026 年 10 月，中国拟将 23 项 AI 技术（大模型、智能体、芯片设计赫然在列）列入出口管制。技术第一次成为地缘资产。而极具戏剧性的是，管制草案明确“已开源、已发论文的公有领域技术排除在外”——于是 DeepSeek 在同一周把 V4.1-Flash-1017 以 MIT 协议开源。开源走在了管制前面。下半场的玩家必须同时回答两个问题：技术上怎么领先，政治上怎么合规。</p>
+<p><strong>第三场：入口战。</strong> 移动互联网的入口是 App 和应用商店，AI 时代的入口正在变成“任务”。用户不再打开五个 App 比价、填表、打电话，而是对 Agent 说一句话，Agent 去调用五个服务。谁拥有“任务”，谁就拥有用户。这也是为什么所有大厂都在抢 Agent：入口一旦易主，应用商店的税、搜索的广告位，整套分赃体系都要重写。</p>
+<h2>04 下半场的三个新判断</h2>
+<p>站在 2026 年 10 月，我给出三个判断，欢迎三年后来打脸。</p>
+<p><strong>第一，推理成本趋零之后，竞争转向“任务完成度”。</strong> 当智能不值钱，值钱的是“把事办成”。模型 benchmarks 的重要性会下降，Agent 在真实任务上的成功率会成为新的圣杯。Jasper 当年的逻辑会放大一百倍：理解工作流的人，比拥有模型的人更值钱。</p>
+<p><strong>第二，数据飞轮依然成立，但原料换了。</strong> 原文的数据飞轮（场景→数据→训练→留存→改造行业）没错，但人类生产的公开数据已经被吃得差不多了。下半场的飞轮原料是两样：合成数据，以及 Agent 在执行任务中产生的交互数据。谁拥有最多真实任务，谁就拥有最好的数据。</p>
+<p><strong>第三，主权 AI 时代，开源与管制的拉锯长期存在。</strong> 技术越是通用，越会被当作战略资产。开源不会死——它恰恰是小玩家对抗垄断、大玩家抢生态的武器；管制也不会停——它是对冲技术扩散的缰绳。未来的赢家，是那些能在“开放获客”和“合规生存”之间走钢丝的人。</p>
+<h2>结尾</h2>
+<p>三年前那篇文章说：“这场竞争以迷雾展开，在迷雾中进行。唯一不变的是，一切都在变化。”</p>
+<p>三年后，迷雾散了一些，但没有散完。下半场唯一确定的东西，可能就是“任务”本身——三年前大家争的是“谁的模型更聪明”，现在争的是“谁能替用户把事办成”，而下一个三年，争的会是谁拥有“任务”这个入口。</p>
+<p>能吃到这波红利的，依然不是预测最准的人，而是离真实任务最近的人。</p>
+
+<figure class="art-fig"><img src="assets/posts/aigc-4.webp" alt="一个机器人同时连接着多个应用和服务" loading="lazy" width="1400" height="933" /></figure>
+
+
+      </div>
+      <div class="art-foot">
+        <span>读到这里，想聊聊产品？</span>
+        <button class="btn" type="button" data-copy="silviafsy01@gmail.com">复制邮箱 Copy email</button>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="wrap foot">
+    <span>© F.Sylvia · AI 产品经理 / 艺术家</span>
+    <span><a href="index.html">回到首页 Home</a> · <button type="button" data-copy="silviafsy01@gmail.com" style="background:none;border:0;text-decoration:underline;text-underline-offset:3px">silviafsy01@gmail.com</button></span>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>

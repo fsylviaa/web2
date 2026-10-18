@@ -54,6 +54,19 @@
       .stats { display: flex; gap: 32px; flex-wrap: wrap; margin: 22px 0 26px; }
       .stat b { display: block; font-family: var(--font-heading); font-weight: 500; font-size: 30px; font-variant-numeric: tabular-nums; }
       .stat span { font-size: 13px; color: var(--muted); }
+      .feature + .feature { border-top: 0; }
+      @media (min-width: 900px) { .feature.flip { grid-template-columns: .9fr 1.1fr; } .feature.flip .shot { order: 2; } }
+      .shot { display: block; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(30, 0, 4, .7); transition: transform .4s ease; }
+      .shot:hover { transform: translateY(-4px) rotate(-.4deg); }
+      .shot img { width: 100%; height: auto; }
+      .feature h2 .en-name { font-size: .5em; color: var(--muted); font-family: var(--font-body); letter-spacing: -0.01em; }
+      .feature p { max-width: 34em; }
+      .feats { list-style: none; margin: 18px 0 20px; display: grid; gap: 8px; max-width: 34em; }
+      .feats li { position: relative; padding-left: 1.2em; color: rgba(255,255,255,.88); font-size: 15px; }
+      .feats li::before { content: ""; position: absolute; left: 0; top: .7em; width: 6px; height: 6px; border-radius: 50%; background: #ffe9d6; }
+      .credit { font-size: 13px; color: var(--muted); margin-top: 14px; }
+      .credit a { text-decoration: underline; text-underline-offset: 3px; }
+      .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
     </style>
 
     <header class="page-head">
@@ -65,19 +78,43 @@
     </header>
 
     <section class="feature">
-      <div class="ph-img rise" data-label="精选项目大图 · Featured"></div>
+      <a class="shot rise" href="https://github.com/fsylviaa/Poster-Factory" target="_blank" rel="noopener">
+        <img src="assets/projects/poster-factory.webp" alt="海报工厂生成的三张几何海报：朱红、蜂蜜黄、墨绿配色" width="1600" height="1000" loading="lazy" />
+      </a>
       <div class="rise">
-        <p class="eyebrow">精选 Featured · 20XX</p>
-        <h2>海报工厂<br><span style="font-size:.5em;color:var(--muted);font-family:var(--font-body)">Poster Factory</span></h2>
-        <p><span class="ph">一两句话：它解决了什么问题、给谁用、你在里面做了什么。</span></p>
-        <div class="stats">
-          <div class="stat"><b><span class="ph">0,000</span></b><span>用户 / Users</span></div>
-          <div class="stat"><b><span class="ph">00%</span></b><span>关键指标 / Metric</span></div>
-          <div class="stat"><b><span class="ph">0</span> 周</b><span>从想法到上线 / To launch</span></div>
+        <p class="eyebrow">精选 Featured · 生成式设计工具</p>
+        <h2>海报工厂<br><span class="en-name">Poster Factory</span></h2>
+        <p>在浏览器里打开就能用的生成式海报工作室。选好尺寸，挑几个颜色，拖动参数或者点一下骰子随机，就能得到一张独一无二的海报或壁纸，一键导出 PNG。</p>
+        <ul class="feats">
+          <li>7 种常用尺寸预设：海报、手机壁纸、小红书、Instagram、电脑壁纸、A4</li>
+          <li>朱红、墨黑、墨绿、蜂蜜黄、米白组成的东方调色盘</li>
+          <li>随机生成、撤销 / 重做，全中文界面</li>
+        </ul>
+        <div class="chips"><span class="chip">p5.js</span><span class="chip">Vite</span><span class="chip">生成式设计</span><span class="chip">中文本地化</span></div>
+        <p class="credit">基于 Multitude 开源的 <a href="https://github.com/multitude-amsterdam/p5Catalyst" target="_blank" rel="noopener">p5Catalyst</a>（MIT）改造。</p>
+        <div class="actions">
+          <a class="btn" href="https://github.com/fsylviaa/Poster-Factory" target="_blank" rel="noopener">查看代码 GitHub ↗</a>
         </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <a class="btn" href="#">试一试 Try it →</a>
-          <a class="btn line" href="#">查看案例 Case study</a>
+      </div>
+    </section>
+
+    <section class="feature flip">
+      <a class="shot rise" href="play/fog-mirror/">
+        <img src="assets/projects/fog-mirror.webp" alt="雾镜自拍：在起雾的镜面上用手指画出的一颗心" width="1600" height="858" loading="lazy" />
+      </a>
+      <div class="rise">
+        <p class="eyebrow">周末实验 Weekend experiment · 01</p>
+        <h2>雾镜自拍<br><span class="en-name">Fog Mirror</span></h2>
+        <p>把想说的话，写在雾里。打开前置镜头，镜面会慢慢起雾，用食指在空中划过就能擦开水雾、写字画画，再比个剪刀手拍下这一刻。</p>
+        <ul class="feats">
+          <li>☝ 食指移动擦开水雾，🤏 捏合切换粗细笔，🖐 张开手掌重新起雾，✌ 剪刀手触发 3 秒自拍倒计时</li>
+          <li>用 MediaPipe 实时识别手势，不开摄像头也能用鼠标或手指体验</li>
+          <li>全部在浏览器里完成：画面不上传、不存储，照片只在本机生成</li>
+        </ul>
+        <div class="chips"><span class="chip">MediaPipe Hands</span><span class="chip">手势交互</span><span class="chip">Canvas</span><span class="chip">隐私优先</span></div>
+        <div class="actions">
+          <a class="btn" href="play/fog-mirror/">试一试 Try it →</a>
+          <a class="btn line" href="https://github.com/fsylviaa/hand-mirror" target="_blank" rel="noopener">查看代码 GitHub ↗</a>
         </div>
       </div>
     </section>
@@ -99,28 +136,6 @@
         
         <article class="pcard rise">
           <div class="ph-img" data-label="项目封面 · Cover 02"></div>
-          <div class="pbody">
-            <div class="pmeta"><span>AI 应用</span><span>20XX</span></div>
-            <h3>项目名称 <small>Project name</small></h3>
-            <p><span class="ph">一句话描述：它是什么、解决了什么问题。</span></p>
-            <div class="chips"><span class="chip">AI</span><span class="chip"><span class="ph">角色</span></span><span class="chip"><span class="ph">工具 / 模型</span></span></div>
-            <a class="btn line" href="#">查看案例 Case study →</a>
-          </div>
-        </article>
-        
-        <article class="pcard rise">
-          <div class="ph-img" data-label="项目封面 · Cover 03"></div>
-          <div class="pbody">
-            <div class="pmeta"><span>实验 Lab</span><span>20XX</span></div>
-            <h3>小游戏 <small>Mini game</small></h3>
-            <p><span class="ph">一句话描述：好玩在哪里、用了什么 AI 能力。</span></p>
-            <div class="chips"><span class="chip">AI</span><span class="chip"><span class="ph">角色</span></span><span class="chip"><span class="ph">工具 / 模型</span></span></div>
-            <a class="btn line" href="#">查看案例 Case study →</a>
-          </div>
-        </article>
-        
-        <article class="pcard rise">
-          <div class="ph-img" data-label="项目封面 · Cover 04"></div>
           <div class="pbody">
             <div class="pmeta"><span>实验 Lab</span><span>20XX</span></div>
             <h3>项目名称 <small>Project name</small></h3>

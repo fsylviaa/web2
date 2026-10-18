@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1114">
+  <meta name="description" content="在浏览器中用食指擦开水雾、写字并拍下一张镜面自拍。图片仅在本机生成。">
+  <title>雾镜自拍 · Fog Mirror</title>
+  <link rel="stylesheet" href="style.css?v=20261017">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#mirror" aria-label="雾镜自拍首页">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <strong>雾镜自拍</strong>
+          <small>FOG MIRROR</small>
+        </span>
+      </a>
+      <div class="privacy-pill"><span aria-hidden="true">●</span> 只在浏览器内生成</div>
+    </header>
+
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">WEEKEND EXPERIMENT · 01</p>
+      <h1 id="page-title">把想说的话，<br><em>写在雾里。</em></h1>
+      <p class="lede">打开前置镜头，用食指擦开水雾。捏合换笔触，张开手掌重新起雾，剪刀手拍下这一刻。</p>
+    </section>
+
+    <section class="mirror-card" id="mirror" aria-label="水雾镜面互动区">
+      <div class="mirror-stage" id="mirror-stage">
+        <video id="camera" autoplay muted playsinline aria-label="前置摄像头画面"></video>
+        <div class="camera-placeholder" id="camera-placeholder">
+          <span class="placeholder-orb" aria-hidden="true"></span>
+          <p>镜面正在等待你</p>
+          <small>即使不打开摄像头，也可以用鼠标或触摸体验水雾。</small>
+        </div>
+        <canvas id="fog-canvas" aria-label="可擦除的水雾画布"></canvas>
+        <canvas id="hand-canvas" aria-hidden="true"></canvas>
+
+        <div class="focus-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+        <div class="stage-topline">
+          <div class="live-status" id="camera-status"><span></span><b>镜头未开启</b></div>
+          <div class="gesture-status" id="gesture-status">鼠标 / 触摸可用</div>
+        </div>
+
+        <div class="brush-indicator" id="brush-indicator" aria-live="polite">
+          <span class="brush-dot"></span><b>细笔</b>
+        </div>
+
+        <div class="palm-progress" id="palm-progress" aria-hidden="true">
+          <span></span><b>保持张开手掌</b>
+        </div>
+
+        <div class="countdown" id="countdown" aria-live="assertive"></div>
+        <div class="flash" id="flash" aria-hidden="true"></div>
+
+        <div class="permission-panel" id="permission-panel">
+          <p class="panel-kicker">FRONT CAMERA</p>
+          <h2>让镜面映出你</h2>
+          <p>摄像头画面不会上传，也不会存储。离开页面后，镜头会立即关闭。</p>
+          <button class="primary-button" id="start-camera" type="button">
+            <span class="camera-icon" aria-hidden="true"></span>
+            <span>开启前置镜头</span>
+          </button>
+          <button class="text-button" id="skip-camera" type="button">先用鼠标体验</button>
+        </div>
+
+        <div class="error-panel" id="error-panel" hidden>
+          <p class="panel-kicker">CAMERA UNAVAILABLE</p>
+          <h2>镜头没有打开</h2>
+          <p id="error-message">请检查浏览器的摄像头权限，然后重试。</p>
+          <button class="primary-button" id="retry-camera" type="button">重新尝试</button>
+          <button class="text-button" id="continue-manual" type="button">继续用鼠标 / 触摸</button>
+        </div>
+      </div>
+
+      <div class="control-deck">
+        <div class="control-copy">
+          <span class="step-number">01</span>
+          <div><b>食指写字</b><small>沿着镜面移动，擦出你的笔迹</small></div>
+        </div>
+        <div class="action-row">
+          <button class="utility-button" id="toggle-brush" type="button" aria-label="切换笔触">
+            <span class="brush-preview"></span><b>细笔</b>
+          </button>
+          <button class="utility-button" id="undo" type="button" disabled aria-label="撤销最后一笔">↶ <b>撤销</b></button>
+          <button class="utility-button" id="refog" type="button" aria-label="重新起雾">⌁ <b>重新起雾</b></button>
+          <button class="capture-button" id="capture" type="button" disabled>
+            <span class="shutter-icon" aria-hidden="true"></span><b>拍下这一刻</b>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="gesture-guide" aria-label="手势说明">
+      <article><span class="gesture-glyph">☝</span><div><small>WRITE</small><b>食指移动</b><p>擦开水雾，写字或画心</p></div></article>
+      <article><span class="gesture-glyph">🤏</span><div><small>BRUSH</small><b>捏合一次</b><p>在细笔与粗笔间切换</p></div></article>
+      <article><span class="gesture-glyph">🖐</span><div><small>RESET</small><b>保持 0.8 秒</b><p>让整面镜子重新起雾</p></div></article>
+      <article><span class="gesture-glyph">✌</span><div><small>CAPTURE</small><b>剪刀手</b><p>触发 3 秒自拍倒计时</p></div></article>
+    </section>
+
+    <footer>
+      <p>你的画面从不离开这台设备。</p>
+      <p>FOG MIRROR · <span id="year"></span></p>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js?v=20261017-4"></script>
+</body>
+</html>
