@@ -39,16 +39,29 @@
       .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 32px 0 8px; }
       .filters button { font-size: 14px; padding: 6px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.5); background: transparent; transition: background-color .2s, color .2s; }
       .filters button[aria-pressed="true"], .filters button:hover { background: #fff; color: #000; }
+      .story { padding: 56px 0; border-bottom: 1px solid var(--line); }
+      .story-copy { display: grid; gap: 16px; margin-bottom: 30px; }
+      @media (min-width: 820px) { .story-copy { grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; } }
+      .story-copy h2 { font-family: var(--font-heading); font-weight: 500; font-size: clamp(28px, 4vw, 42px); line-height: 1.08; letter-spacing: -.02em; }
+      .story-copy h2 small { display: block; margin-top: .5em; font-family: var(--font-body); font-size: .38em; line-height: 1.35; color: var(--muted); letter-spacing: .02em; }
+      .story-copy p { max-width: 43em; font-size: clamp(16px, 2vw, 20px); color: rgba(255,255,255,.86); }
+      .coord-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+      @media (min-width: 720px) { .coord-grid { grid-template-columns: repeat(3, 1fr); } }
+      .coord-grid figure { min-width: 0; }
+      .coord-grid img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 16px; }
+      .coord-grid figcaption { color: var(--muted); font-size: 13px; margin-top: 8px; }
+      .gallery-section { padding: 56px 0 24px; }
       .masonry { columns: 1; column-gap: 24px; padding: 32px 0 16px; }
       @media (min-width: 620px) { .masonry { columns: 2; } }
       @media (min-width: 1000px) { .masonry { columns: 3; } }
       .tile { break-inside: avoid; margin: 0 0 28px; }
-      .tile .ph-img { border-radius: 14px; transition: transform .4s ease; }
-      .tile:hover .ph-img { transform: scale(1.015); }
+      .tile a { display: block; overflow: hidden; border-radius: 14px; background: rgba(255,255,255,.06); }
+      .tile img { width: 100%; height: auto; transition: transform .4s ease; }
+      .tile:hover img { transform: scale(1.015); }
       .tile figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; font-size: 14px; }
       .tile figcaption span:last-child { color: var(--muted); white-space: nowrap; }
       .tile.hide { display: none; }
-      .statement { max-width: 40em; font-size: clamp(19px, 2.4vw, 24px); line-height: 1.55; }
+      @media (max-width: 520px) { .tile figcaption { display: block; } .tile figcaption span:last-child { display: block; margin-top: 2px; } }
     </style>
 
     <header class="page-head">
@@ -56,59 +69,70 @@
       <h1 class="page-title rise">艺术作品<small>Art and everything in between</small></h1>
       <p class="lede rise">是产品，也是艺术。
         <span class="en">It's product. It's also art.</span></p>
-      <p class="ph-note">✎ 占位内容 · 之后替换成真实内容</p>
-      <div class="filters rise" role="group" aria-label="按类别筛选">
-        <button type="button" aria-pressed="true" data-f="all">全部 All</button>
-        <button type="button" aria-pressed="false" data-f="艺术">艺术 Art</button>
-        <button type="button" aria-pressed="false" data-f="插画">插画 Illustration</button>
-        <button type="button" aria-pressed="false" data-f="综合材料">综合材料 Mixed</button>
-      </div>
     </header>
 
-    <section>
-      <div class="masonry">
-        <figure class="tile rise" data-kind="艺术">
-          <div class="ph-img" style="aspect-ratio:3 / 4" data-label="作品图 · Artwork 01"></div>
-          <figcaption><span><span class="ph">作品名称</span></span><span>艺术 Art · 20XX</span></figcaption>
+    <section class="story">
+      <div class="story-copy">
+        <h2 class="rise">中意文化交流<br><small>Cross-cultural coordination</small></h2>
+        <p class="rise">担任武汉纺织学院访意代表团在马兰欧尼学院的中意双语翻译与协调人，负责行程统筹与双方沟通对接。</p>
+      </div>
+      <div class="coord-grid">
+        <figure class="rise">
+          <img src="assets/art/coordination-01.jpg" alt="武汉纺织学院访意代表团与马兰欧尼学院交流现场" width="1800" height="1350" loading="lazy" decoding="async" />
+          <figcaption>代表团交流现场 · 01</figcaption>
         </figure>
-        <figure class="tile rise" data-kind="艺术">
-          <div class="ph-img" style="aspect-ratio:1 / 1" data-label="作品图 · Artwork 02"></div>
-          <figcaption><span><span class="ph">作品名称</span></span><span>艺术 Art · 20XX</span></figcaption>
+        <figure class="rise">
+          <img src="assets/art/coordination-02.jpg" alt="武汉纺织学院访意代表团在马兰欧尼学院交流合影" width="1800" height="1350" loading="lazy" decoding="async" />
+          <figcaption>代表团交流现场 · 02</figcaption>
         </figure>
-        <figure class="tile rise" data-kind="插画">
-          <div class="ph-img" style="aspect-ratio:4 / 5" data-label="作品图 · Artwork 03"></div>
-          <figcaption><span><span class="ph">作品名称</span></span><span>插画 Illustration · 20XX</span></figcaption>
-        </figure>
-        <figure class="tile rise" data-kind="艺术">
-          <div class="ph-img" style="aspect-ratio:4 / 3" data-label="作品图 · Artwork 04"></div>
-          <figcaption><span><span class="ph">作品名称</span></span><span>艺术 Art · 20XX</span></figcaption>
-        </figure>
-        <figure class="tile rise" data-kind="艺术">
-          <div class="ph-img" style="aspect-ratio:3 / 4" data-label="作品图 · Artwork 05"></div>
-          <figcaption><span><span class="ph">作品名称</span></span><span>艺术 Art · 20XX</span></figcaption>
-        </figure>
-        <figure class="tile rise" data-kind="综合材料">
-          <div class="ph-img" style="aspect-ratio:1 / 1" data-label="作品图 · Artwork 06"></div>
-          <figcaption><span><span class="ph">作品名称</span></span><span>综合材料 Mixed · 20XX</span></figcaption>
-        </figure>
-        <figure class="tile rise" data-kind="艺术">
-          <div class="ph-img" style="aspect-ratio:4 / 5" data-label="作品图 · Artwork 07"></div>
-          <figcaption><span><span class="ph">作品名称</span></span><span>艺术 Art · 20XX</span></figcaption>
-        </figure>
-        <figure class="tile rise" data-kind="插画">
-          <div class="ph-img" style="aspect-ratio:3 / 4" data-label="作品图 · Artwork 08"></div>
-          <figcaption><span><span class="ph">作品名称</span></span><span>插画 Illustration · 20XX</span></figcaption>
-        </figure>
-        <figure class="tile rise" data-kind="艺术">
-          <div class="ph-img" style="aspect-ratio:4 / 3" data-label="作品图 · Artwork 09"></div>
-          <figcaption><span><span class="ph">作品名称</span></span><span>艺术 Art · 20XX</span></figcaption>
+        <figure class="rise">
+          <img src="assets/art/coordination-03.jpg" alt="武汉纺织学院访意代表团与马兰欧尼学院礼物交流" width="1800" height="1350" loading="lazy" decoding="async" />
+          <figcaption>代表团交流现场 · 03</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="section">
-      <h2 class="section-title rise">创作自述 <small>Artist statement</small></h2>
-      <p class="statement rise"><span class="ph">这里写一段创作自述：你为什么做艺术，艺术和你做 AI 产品之间有什么联系。</span></p>
+    <section class="gallery-section">
+      <h2 class="section-title rise">作品与展览 <small>Works & exhibitions</small></h2>
+      <div class="filters rise" role="group" aria-label="按类别筛选">
+        <button type="button" aria-pressed="true" data-f="all">全部 All</button>
+        <button type="button" aria-pressed="false" data-f="作品">作品 Works</button>
+        <button type="button" aria-pressed="false" data-f="展览">展览 Exhibitions</button>
+      </div>
+      <div class="masonry">
+        <figure class="tile rise" data-kind="展览">
+          <a href="assets/art/exhibition-screening.jpg" target="_blank" rel="noopener"><img src="assets/art/exhibition-screening.jpg" alt="艺术展览活动现场与放映屏幕" width="1800" height="1200" loading="lazy" decoding="async" /></a>
+          <figcaption><span>展览活动现场</span><span>展览 Exhibition</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="展览">
+          <a href="assets/art/exhibition-gallery.jpg" target="_blank" rel="noopener"><img src="assets/art/exhibition-gallery.jpg" alt="画廊中展出的综合材料版画作品" width="1800" height="1200" loading="lazy" decoding="async" /></a>
+          <figcaption><span>画廊展览现场</span><span>展览 Exhibition · 2019</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="展览">
+          <a href="assets/art/exhibition-fair.jpg" target="_blank" rel="noopener"><img src="assets/art/exhibition-fair.jpg" alt="艺术博览会展位与参展作品" width="1500" height="1800" loading="lazy" decoding="async" /></a>
+          <figcaption><span>艺术博览会现场</span><span>展览 Exhibition</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="作品">
+          <a href="assets/art/artwork-seguire.jpg" target="_blank" rel="noopener"><img src="assets/art/artwork-seguire.jpg" alt="综合材料版画作品 Seguire II-I" width="1734" height="1800" loading="lazy" decoding="async" /></a>
+          <figcaption><span>Seguire II-I</span><span>综合材料 Mixed media · 2019</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="作品">
+          <a href="assets/art/artwork-settima-sedia.jpg" target="_blank" rel="noopener"><img src="assets/art/artwork-settima-sedia.jpg" alt="六幅综合材料版画组成的作品 Settima sedia" width="1778" height="1800" loading="lazy" decoding="async" /></a>
+          <figcaption><span>Settima sedia</span><span>综合材料 Mixed media · 2021</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="展览">
+          <a href="assets/art/exhibition-visit.jpg" target="_blank" rel="noopener"><img src="assets/art/exhibition-visit.jpg" alt="观众参观版画作品展览" width="1800" height="1350" loading="lazy" decoding="async" /></a>
+          <figcaption><span>作品展览现场</span><span>展览 Exhibition · 2021</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="展览">
+          <a href="assets/art/exhibition-nouvelle-vague.jpg" target="_blank" rel="noopener"><img src="assets/art/exhibition-nouvelle-vague.jpg" alt="Nouvelle vague 10 艺术版画展海报" width="1800" height="1350" loading="lazy" decoding="async" /></a>
+          <figcaption><span>Nouvelle vague 10</span><span>展览 Exhibition · 2019</span></figcaption>
+        </figure>
+        <figure class="tile rise" data-kind="作品">
+          <a href="assets/art/publication-solitary-islands.jpg" target="_blank" rel="noopener"><img src="assets/art/publication-solitary-islands.jpg" alt="收录艺术作品的 Solitari come isole 与 Malattia e cura 出版物" width="1800" height="779" loading="lazy" decoding="async" /></a>
+          <figcaption><span>Solitari come isole / Malattia e cura</span><span>作品出版 Publication</span></figcaption>
+        </figure>
+      </div>
     </section>
 
     <script>
