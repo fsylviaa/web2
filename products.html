@@ -13,13 +13,13 @@
   <nav class="nav">
     <a class="logo" href="index.html">
       <span class="logo-text">F.Sylvia®</span>
-      <span class="logo-star" aria-hidden="true">✳︎</span>
+      <span class="logo-star">首页</span>
     </a>
     <div class="links">
       <a href="about.html">关于我<small>About</small></a><span>,&nbsp;</span>
       <a href="products.html" class="active" aria-current="page">AI 产品<small>AI Products</small></a><span>,&nbsp;</span>
       <a href="art.html">艺术作品<small>Art</small></a><span>,&nbsp;</span>
-      <a href="content.html">内容<small>Content</small></a>
+      <a href="content.html">我的思考<small>Thoughts</small></a>
     </div>
     <a class="cta" href="about.html#contact">联系我<small>Contact</small></a>
     <button class="burger" id="burger" aria-label="打开菜单 Menu"><span></span><span></span><span></span></button>
@@ -29,7 +29,7 @@
     <a href="about.html">关于我<small>About</small></a>
     <a href="products.html">AI 产品<small>AI Products</small></a>
     <a href="art.html">艺术作品<small>Art</small></a>
-    <a href="content.html">内容<small>Content</small></a>
+    <a href="content.html">我的思考<small>Thoughts</small></a>
     <a href="about.html#contact" class="u">联系我<small>Contact</small></a>
   </div>
 
@@ -89,6 +89,26 @@
       <p class="ph-note">✎ 占位内容 · 之后替换成真实内容</p>
     </header>
 
+    <section class="feature flip">
+      <a class="shot rise" href="play/fog-mirror/">
+        <img src="assets/projects/fog-mirror.webp" alt="雾镜自拍：在起雾的镜面上用手指画出的一颗心" width="1600" height="858" loading="lazy" />
+      </a>
+      <div class="rise">
+        <p class="eyebrow">周末实验 Weekend experiment · 01</p>
+        <h2>雾镜自拍<br><span class="en-name">Fog Mirror</span></h2>
+        <p>把想说的话，写在雾里。打开前置镜头，镜面会慢慢起雾，用食指在空中划过就能擦开水雾、写字画画，再比个剪刀手拍下这一刻。</p>
+        <ul class="feats">
+          <li>☝ 食指移动擦开水雾，🤏 捏合切换粗细笔，🖐 张开手掌重新起雾，✌ 剪刀手触发 3 秒自拍倒计时</li>
+          <li>用 MediaPipe 实时识别手势，不开摄像头也能用鼠标或手指体验</li>
+          <li>全部在浏览器里完成：画面不上传、不存储，照片只在本机生成</li>
+        </ul>
+        <div class="chips"><span class="chip">MediaPipe Hands</span><span class="chip">手势交互</span><span class="chip">Canvas</span><span class="chip">隐私优先</span></div>
+        <div class="actions">
+          <a class="btn" href="play/fog-mirror/">试一试 Try it →</a>
+          <a class="btn line" href="https://github.com/fsylviaa/hand-mirror" target="_blank" rel="noopener">查看代码 GitHub ↗</a>
+        </div>
+      </div>
+    </section>
 
     <section class="feature">
       <a class="shot rise markdown-card-preview" href="play/markdown-card/" aria-label="体验 Markdown 知识卡片与长图生成器">
@@ -128,27 +148,6 @@
         <p class="credit">基于 Multitude 开源的 <a href="https://github.com/multitude-amsterdam/p5Catalyst" target="_blank" rel="noopener">p5Catalyst</a>（MIT）改造。</p>
         <div class="actions">
           <a class="btn" href="https://github.com/fsylviaa/Poster-Factory" target="_blank" rel="noopener">查看代码 GitHub ↗</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="feature flip">
-      <a class="shot rise" href="play/fog-mirror/">
-        <img src="assets/projects/fog-mirror.webp" alt="雾镜自拍：在起雾的镜面上用手指画出的一颗心" width="1600" height="858" loading="lazy" />
-      </a>
-      <div class="rise">
-        <p class="eyebrow">周末实验 Weekend experiment · 01</p>
-        <h2>雾镜自拍<br><span class="en-name">Fog Mirror</span></h2>
-        <p>把想说的话，写在雾里。打开前置镜头，镜面会慢慢起雾，用食指在空中划过就能擦开水雾、写字画画，再比个剪刀手拍下这一刻。</p>
-        <ul class="feats">
-          <li>☝ 食指移动擦开水雾，🤏 捏合切换粗细笔，🖐 张开手掌重新起雾，✌ 剪刀手触发 3 秒自拍倒计时</li>
-          <li>用 MediaPipe 实时识别手势，不开摄像头也能用鼠标或手指体验</li>
-          <li>全部在浏览器里完成：画面不上传、不存储，照片只在本机生成</li>
-        </ul>
-        <div class="chips"><span class="chip">MediaPipe Hands</span><span class="chip">手势交互</span><span class="chip">Canvas</span><span class="chip">隐私优先</span></div>
-        <div class="actions">
-          <a class="btn" href="play/fog-mirror/">试一试 Try it →</a>
-          <a class="btn line" href="https://github.com/fsylviaa/hand-mirror" target="_blank" rel="noopener">查看代码 GitHub ↗</a>
         </div>
       </div>
     </section>
