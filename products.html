@@ -67,6 +67,18 @@
       .credit { font-size: 13px; color: var(--muted); margin-top: 14px; }
       .credit a { text-decoration: underline; text-underline-offset: 3px; }
       .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+
+      .markdown-card-preview { aspect-ratio: 16 / 11; display: grid; grid-template-columns: 42% 58%; background: #f3efe6; color: #252620; padding: 22px; gap: 12px; }
+      .md-demo-editor, .md-demo-paper { border-radius: 12px; overflow: hidden; }
+      .md-demo-editor { background: #fbfaf6; padding: 16px; font: 12px/1.75 ui-monospace, SFMono-Regular, Menlo, monospace; color: #56574f; }
+      .md-demo-editor b { color: #e25734; font-weight: 600; }
+      .md-demo-paper { background: #fffefb; padding: 22px 20px; box-shadow: 0 15px 30px rgba(47,42,31,.14); }
+      .md-demo-paper h3 { font-family: Georgia, serif; font-size: clamp(18px, 2.5vw, 30px); line-height: 1.1; margin: 0 0 14px; color: #252620; }
+      .md-demo-paper i { display: block; width: 54px; height: 4px; background: #e25734; margin-bottom: 18px; }
+      .md-demo-paper span { display: block; height: 7px; border-radius: 99px; background: #d8d5cb; margin: 9px 0; }
+      .md-demo-paper span:nth-of-type(2) { width: 76%; }
+      .md-demo-paper span:nth-of-type(3) { width: 88%; }
+      @media (max-width: 520px) { .markdown-card-preview { padding: 12px; grid-template-columns: 38% 62%; } .md-demo-editor { padding: 10px; font-size: 9px; } .md-demo-paper { padding: 16px 12px; } }
     </style>
 
     <header class="page-head">
@@ -76,6 +88,28 @@
         <span class="en">Products, experiments and small tools. <span class="ph">One line on how you build.</span></span></p>
       <p class="ph-note">✎ 占位内容 · 之后替换成真实内容</p>
     </header>
+
+
+    <section class="feature">
+      <a class="shot rise markdown-card-preview" href="play/markdown-card/" aria-label="体验 Markdown 知识卡片与长图生成器">
+        <div class="md-demo-editor"><b>#</b> 把知识变成卡片<br><br><b>&gt;</b> 安全实时预览<br><br>- 三种主题<br>- 自定义排版<br>- PNG 长图导出</div>
+        <div class="md-demo-paper"><h3>把知识，<br>变成一张卡片</h3><i></i><span></span><span></span><span></span></div>
+      </a>
+      <div class="rise">
+        <p class="eyebrow">在线工具 Browser tool · 02</p>
+        <h2>Markdown 知识卡片<br><span class="en-name">Markdown Card Studio</span></h2>
+        <p>把 Markdown 即时排版成适合分享的知识卡片和 PNG 长图。所有内容只在浏览器里处理，输入经过 DOMPurify 清理后才进入预览。</p>
+        <ul class="feats">
+          <li>支持标题、列表、引用、代码块和 GFM 表格</li>
+          <li>简约、杂志、便签三种主题，可调字号、行距、背景色和内容宽度</li>
+          <li>自动保存草稿，支持 Markdown 导入下载与 PNG 长图导出</li>
+        </ul>
+        <div class="chips"><span class="chip">Marked</span><span class="chip">DOMPurify</span><span class="chip">LocalStorage</span><span class="chip">隐私优先</span></div>
+        <div class="actions">
+          <a class="btn" href="play/markdown-card/">在线体验 Try it →</a>
+        </div>
+      </div>
+    </section>
 
     <section class="feature">
       <a class="shot rise" href="https://github.com/fsylviaa/Poster-Factory" target="_blank" rel="noopener">

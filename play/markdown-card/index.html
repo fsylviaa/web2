@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f3efe6">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+  <meta name="description" content="安全、轻量的 Markdown 知识卡片与 PNG 长图生成器">
+  <title>纸间 · Markdown 知识卡片</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../../products.html" aria-label="返回 AI 产品">
+      <span class="brand-mark" aria-hidden="true">纸</span>
+      <span><strong>纸间</strong><small>Markdown Card Studio</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="safe-badge"><i></i>已安全清理</span>
+      <button class="button ghost" id="importButton" type="button">导入 .md</button>
+      <button class="button ghost" id="downloadButton" type="button">下载 Markdown</button>
+      <button class="button primary" id="exportButton" type="button"><span>导出 PNG</span></button>
+      <input id="fileInput" type="file" accept=".md,.markdown,text/markdown,text/plain" hidden>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="toolbar" aria-label="样式设置">
+      <div class="toolbar-heading">
+        <span>样式设置</span>
+        <button id="resetButton" class="text-button" type="button">恢复默认</button>
+      </div>
+
+      <fieldset class="control-group theme-group">
+        <legend>主题</legend>
+        <label class="theme-option selected">
+          <input type="radio" name="theme" value="minimal" checked>
+          <span class="theme-swatch swatch-minimal"><i></i></span><span>简约</span>
+        </label>
+        <label class="theme-option">
+          <input type="radio" name="theme" value="magazine">
+          <span class="theme-swatch swatch-magazine"><i></i></span><span>杂志</span>
+        </label>
+        <label class="theme-option">
+          <input type="radio" name="theme" value="sticky">
+          <span class="theme-swatch swatch-sticky"><i></i></span><span>便签</span>
+        </label>
+      </fieldset>
+
+      <div class="control-group">
+        <label for="fontSize">字号 <output id="fontSizeValue">18 px</output></label>
+        <input id="fontSize" type="range" min="14" max="24" step="1" value="18">
+      </div>
+      <div class="control-group">
+        <label for="lineHeight">行距 <output id="lineHeightValue">1.75</output></label>
+        <input id="lineHeight" type="range" min="1.35" max="2.2" step="0.05" value="1.75">
+      </div>
+      <div class="control-group">
+        <label for="contentWidth">内容宽度 <output id="contentWidthValue">720 px</output></label>
+        <input id="contentWidth" type="range" min="480" max="920" step="20" value="720">
+      </div>
+      <div class="control-group color-control">
+        <label for="backgroundColor">背景色 <output id="backgroundValue">#FFFEFB</output></label>
+        <span class="color-picker"><input id="backgroundColor" type="color" value="#fffefb"></span>
+      </div>
+
+      <div class="privacy-note">
+        <strong>只在你的浏览器里工作</strong>
+        <p>草稿保存在 LocalStorage，不上传内容，不接入任何模型或服务器存储。</p>
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <div class="mobile-tabs" role="tablist" aria-label="编辑视图">
+        <button id="editTab" class="active" role="tab" aria-selected="true" type="button">编辑</button>
+        <button id="previewTab" role="tab" aria-selected="false" type="button">预览</button>
+      </div>
+
+      <section class="editor-panel panel active-mobile" id="editorPanel" aria-label="Markdown 编辑器">
+        <div class="panel-head">
+          <span>MARKDOWN</span>
+          <span id="wordCount">0 字</span>
+        </div>
+        <textarea id="markdownInput" spellcheck="false" aria-label="Markdown 内容"></textarea>
+        <div class="editor-foot">
+          <span><kbd>⌘</kbd><kbd>S</kbd> 下载</span>
+          <span id="saveStatus">草稿已保存</span>
+        </div>
+      </section>
+
+      <section class="preview-panel panel" id="previewPanel" aria-label="安全 HTML 预览">
+        <div class="panel-head">
+          <span>PREVIEW</span>
+          <span class="zoom-label">100%</span>
+        </div>
+        <div class="preview-stage">
+          <article id="exportTarget" class="card theme-minimal">
+            <div id="renderedMarkdown" class="markdown-body"></div>
+            <footer class="card-signature">纸间 · 安全 Markdown</footer>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/marked@18.1.1/lib/marked.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.17/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
