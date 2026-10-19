@@ -41,6 +41,10 @@
     pointerActive: false,
     pinchLatched: false,
     victoryLatched: false,
+    victoryFrames: 0,
+    victoryStartedAt: 0,
+    twoHandsVisible: false,
+    missingHandFrames: 0,
     palmStartedAt: 0,
     palmTriggered: false,
     gesture: 'IDLE',
@@ -76,7 +80,8 @@
     state.gesture = label;
     const names = {
       IDLE: '手势待机', DRAW: '食指擦雾', PINCH: '捏合切换笔触',
-      PALM: '保持手掌张开', REFOG: '镜面重新起雾', VICTORY: '剪刀手 · 自拍'
+      PALM: '保持手掌张开', REFOG: '镜面重新起雾', VICTORY: '剪刀手 · 自拍',
+      MULTI: '请只保留一只手'
     };
     gestureStatus.textContent = names[label] || label;
   }
@@ -288,29 +293,62 @@
   }
 
   function absolutePoint(landmark) {
+    // Match the video's object-fit: cover crop. Mapping directly to canvas size makes
+    // the cursor drift away from the mirrored hand, especially on portrait phones.
+    const sourceWidth = video.videoWidth || fogCanvas.width;
+    const sourceHeight = video.videoHeight || fogCanvas.height;
+    const scale = Math.max(fogCanvas.width / sourceWidth, fogCanvas.height / sourceHeight);
+    const renderedWidth = sourceWidth * scale;
+    const renderedHeight = sourceHeight * scale;
+    const x = (1 - landmark.x) * renderedWidth + (fogCanvas.width - renderedWidth) / 2;
+    const rawY = landmark.y * renderedHeight + (fogCanvas.height - renderedHeight) / 2;
+    const normalizedY = rawY / fogCanvas.height;
+    // Keep the palm inside the camera frame while still letting the fingertip
+    // reach the bottom of the mirror. The gain starts only below the midpoint.
+    const reachableY = normalizedY <= .48
+      ? normalizedY
+      : .48 + (normalizedY - .48) * (.52 / .34);
     return {
-      x: (1 - landmark.x) * fogCanvas.width,
-      y: landmark.y * fogCanvas.height
+      x: Math.max(0, Math.min(fogCanvas.width, x)),
+      y: Math.max(0, Math.min(fogCanvas.height, reachableY * fogCanvas.height))
     };
   }
 
-  function distance(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+  function distance(a, b) {
+    return Math.hypot(a.x - b.x, a.y - b.y, (a.z || 0) - (b.z || 0));
+  }
 
-  function fingerExtended(landmarks, tip, pip) {
-    const wrist = landmarks[0];
-    return distance(landmarks[tip], wrist) > distance(landmarks[pip], wrist) * 1.10;
+  function distance2D(a, b) {
+    return Math.hypot(a.x - b.x, a.y - b.y);
+  }
+
+  function jointAngle(a, b, c) {
+    const ab = { x: a.x - b.x, y: a.y - b.y, z: (a.z || 0) - (b.z || 0) };
+    const cb = { x: c.x - b.x, y: c.y - b.y, z: (c.z || 0) - (b.z || 0) };
+    const denominator = Math.max(Math.hypot(ab.x, ab.y, ab.z) * Math.hypot(cb.x, cb.y, cb.z), .0001);
+    const cosine = Math.max(-1, Math.min(1, (ab.x * cb.x + ab.y * cb.y + ab.z * cb.z) / denominator));
+    return Math.acos(cosine) * 180 / Math.PI;
+  }
+
+  function fingerExtended(landmarks, tip, pip, mcp) {
+    // Combining joint straightness with wrist distance works when the hand is
+    // tilted or rotated; a wrist-distance-only test frequently drops gestures.
+    return jointAngle(landmarks[tip], landmarks[pip], landmarks[mcp]) > 145
+      && distance(landmarks[tip], landmarks[0]) > distance(landmarks[pip], landmarks[0]) * 1.02;
   }
 
   function fingerStates(landmarks) {
     const palm = Math.max(distance(landmarks[5], landmarks[17]), .001);
-    const thumbOpen = distance(landmarks[4], landmarks[5]) > distance(landmarks[3], landmarks[5]) * 1.16;
+    const pinchRatio = distance(landmarks[4], landmarks[8]) / palm;
     return {
-      thumb: thumbOpen,
-      index: fingerExtended(landmarks, 8, 6),
-      middle: fingerExtended(landmarks, 12, 10),
-      ring: fingerExtended(landmarks, 16, 14),
-      pinky: fingerExtended(landmarks, 20, 18),
-      pinch: distance(landmarks[4], landmarks[8]) / palm < .36
+      thumb: distance(landmarks[4], landmarks[5]) / palm > .52,
+      index: fingerExtended(landmarks, 8, 6, 5),
+      middle: fingerExtended(landmarks, 12, 10, 9),
+      ring: fingerExtended(landmarks, 16, 14, 13),
+      pinky: fingerExtended(landmarks, 20, 18, 17),
+      // Hysteresis prevents one pinch from toggling the brush repeatedly when
+      // the fingertips hover around the threshold.
+      pinch: state.pinchLatched ? pinchRatio < .43 : pinchRatio < .34
     };
   }
 
@@ -337,25 +375,82 @@
 
   function onHandResults(results) {
     handCtx.clearRect(0, 0, handCanvas.width, handCanvas.height);
-    const landmarks = results.multiHandLandmarks?.[0];
-    if (!landmarks) {
+    const detectedHands = results.multiHandLandmarks || [];
+    if (detectedHands.length > 1) {
       commitStroke('hand');
       state.pinchLatched = false;
       state.victoryLatched = false;
+      state.victoryFrames = 0;
+      state.victoryStartedAt = 0;
       resetPalmProgress();
-      setGesture('IDLE');
+      setGesture('MULTI');
+      if (!state.twoHandsVisible) showToast('检测到两只手，请只保留一只手在画面内', 'error');
+      state.twoHandsVisible = true;
       return;
     }
+    state.twoHandsVisible = false;
+    const landmarks = detectedHands[0];
+    if (!landmarks) {
+      // Never carry a possible capture gesture across a lost-tracking frame.
+      // Partial hands at the edge were the main source of false selfies.
+      state.victoryLatched = false;
+      state.victoryFrames = 0;
+      state.victoryStartedAt = 0;
+      // Brief tracking gaps are common. Keep the active stroke alive for a few
+      // frames instead of chopping handwriting into many tiny strokes.
+      state.missingHandFrames += 1;
+      if (state.missingHandFrames > 10) {
+        commitStroke('hand');
+        state.pinchLatched = false;
+        resetPalmProgress();
+        setGesture('IDLE');
+      }
+      return;
+    }
+    state.missingHandFrames = 0;
 
     const fingers = fingerStates(landmarks);
     const point = absolutePoint(landmarks[8]);
-    const openPalm = fingers.thumb && fingers.index && fingers.middle && fingers.ring && fingers.pinky;
-    const victory = fingers.index && fingers.middle && !fingers.ring && !fingers.pinky && !fingers.pinch;
+    const palm2D = Math.max(distance2D(landmarks[5], landmarks[17]), .001);
+    // A finger aimed toward the camera is foreshortened in 2D. Treat its depth
+    // lead as an explicit drawing pose so it cannot flicker into photo/pinch.
+    const indexDepthLead = ((landmarks[6].z || 0) - (landmarks[8].z || 0)) / palm2D;
+    const indexTowardCamera = indexDepthLead > .30
+      && distance2D(landmarks[8], landmarks[6]) / palm2D < .72;
+    if (indexTowardCamera && !state.captureInProgress) {
+      state.pinchLatched = false;
+      state.victoryLatched = false;
+      state.victoryFrames = 0;
+      state.victoryStartedAt = 0;
+      resetPalmProgress();
+      setGesture('DRAW');
+      continueStroke(point, 'hand');
+      drawCursor(point, state.brushMode);
+      return;
+    }
+    const extendedCount = [fingers.index, fingers.middle, fingers.ring, fingers.pinky].filter(Boolean).length;
+    // A held reset gesture can be permissive because the 0.8 second timer
+    // prevents accidental activation. This also tolerates one occluded finger.
+    const openPalm = extendedCount >= 3 && !fingers.pinch;
+    const capturePointsVisible = [0, 5, 9, 13, 17, 8, 12].every((index) => {
+      const mark = landmarks[index];
+      return mark.x > .04 && mark.x < .96 && mark.y > .04 && mark.y < .96;
+    });
+    const fingersSplit = distance2D(landmarks[8], landmarks[12]) / palm2D > .48;
+    const indexRaised = (landmarks[6].y - landmarks[8].y) / palm2D > .16;
+    const middleRaised = (landmarks[10].y - landmarks[12].y) / palm2D > .12;
+    const ringFolded = jointAngle(landmarks[16], landmarks[14], landmarks[13]) < 155;
+    const pinkyFolded = jointAngle(landmarks[20], landmarks[18], landmarks[17]) < 155;
+    const victory = capturePointsVisible && fingers.index && fingers.middle
+      && fingersSplit && indexRaised && middleRaised
+      && ringFolded && pinkyFolded && !fingers.pinch;
 
     if (openPalm) {
       commitStroke('hand');
       state.pinchLatched = false;
       state.victoryLatched = false;
+      state.victoryFrames = 0;
+      state.victoryStartedAt = 0;
       setGesture('PALM');
       if (!state.palmStartedAt) state.palmStartedAt = performance.now();
       const held = performance.now() - state.palmStartedAt;
@@ -373,13 +468,21 @@
     if (victory) {
       commitStroke('hand');
       setGesture('VICTORY');
-      if (!state.victoryLatched && state.cameraActive && !state.captureInProgress) {
+      if (!state.victoryStartedAt) state.victoryStartedAt = performance.now();
+      state.victoryFrames += 1;
+      // Require a deliberate, stable V sign. Edge fragments cannot accumulate
+      // time because a single lost/invalid frame resets this confirmation.
+      const victoryHeld = performance.now() - state.victoryStartedAt;
+      if (state.victoryFrames >= 8 && victoryHeld >= 260
+        && !state.victoryLatched && state.cameraActive && !state.captureInProgress) {
         state.victoryLatched = true;
         startCountdown();
       }
       return;
     }
     state.victoryLatched = false;
+    state.victoryFrames = 0;
+    state.victoryStartedAt = 0;
 
     if (fingers.pinch) {
       commitStroke('hand');
@@ -390,7 +493,11 @@
     }
     state.pinchLatched = false;
 
-    if (fingers.index && !fingers.middle && !state.captureInProgress) {
+    if (!state.captureInProgress) {
+      // Once MediaPipe has a hand, its index-tip landmark is useful even when
+      // the finger-state classifier flickers. Treat every non-command pose as
+      // drawing instead of interrupting the stroke whenever a joint is briefly
+      // judged bent.
       setGesture('DRAW');
       continueStroke(point, 'hand');
       drawCursor(point, state.brushMode);
@@ -419,8 +526,9 @@
   function startTrackingLoop() {
     const tick = async (time) => {
       if (!state.cameraActive || state.destroyed) return;
-      // 24fps is responsive for drawing while keeping phone heat and battery use in check.
-      if (!state.trackerRunning && time - state.lastInferenceAt >= 42 && video.readyState >= 2) {
+      // Aim for 30fps. The async guard naturally lowers this on slower devices,
+      // while capable phones get a less broken handwriting trace.
+      if (!state.trackerRunning && time - state.lastInferenceAt >= 33 && video.readyState >= 2) {
         state.trackerRunning = true;
         state.lastInferenceAt = time;
         try { await state.hands?.send({ image: video }); }
@@ -488,7 +596,8 @@
         video: {
           facingMode: { ideal: 'user' },
           width: { ideal: 1280 },
-          height: { ideal: 720 },
+          height: { ideal: 960 },
+          aspectRatio: { ideal: 4 / 3 },
           frameRate: { ideal: 30, max: 30 }
         }
       }), 15000, 'Camera permission timed out');
@@ -511,10 +620,10 @@
           locateFile: (file) => `${state.mediaPipeBase}/${file}`
         });
         hands.setOptions({
-          maxNumHands: 1,
-          modelComplexity: 0,
-          minDetectionConfidence: .58,
-          minTrackingConfidence: .55,
+          maxNumHands: 2,
+          modelComplexity: 1,
+          minDetectionConfidence: .38,
+          minTrackingConfidence: .38,
           selfieMode: false
         });
         hands.onResults(onHandResults);
