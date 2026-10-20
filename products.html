@@ -79,6 +79,17 @@
       .md-demo-paper span:nth-of-type(2) { width: 76%; }
       .md-demo-paper span:nth-of-type(3) { width: 88%; }
       @media (max-width: 520px) { .markdown-card-preview { padding: 12px; grid-template-columns: 38% 62%; } .md-demo-editor { padding: 10px; font-size: 9px; } .md-demo-paper { padding: 16px 12px; } }
+      .signalboard-preview { aspect-ratio: 16 / 10; background: #f1f3f7; color: #263149; padding: 18px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+      .signalboard-preview .sb-col { min-width: 0; }
+      .signalboard-preview .sb-head { height: 9px; width: 72%; border-radius: 5px; background: #9da6b5; margin: 2px 0 10px; }
+      .signalboard-preview .sb-card { background: white; border: 1px solid #e1e5ec; border-radius: 5px; padding: 8px; margin-bottom: 7px; box-shadow: 0 2px 5px rgba(35,49,73,.08); }
+      .signalboard-preview .sb-pill { width: 38%; height: 5px; border-radius: 3px; background: #d9ddf8; margin-bottom: 8px; }
+      .signalboard-preview .sb-line { height: 5px; width: 84%; border-radius: 3px; background: #aab3c2; margin-bottom: 5px; }
+      .signalboard-preview .sb-line.short { width: 61%; background: #d4d9e2; }
+      .signalboard-preview .sb-score { height: 5px; width: 34%; border-radius: 3px; background: #8493e8; margin-top: 9px; }
+      .signalboard-preview .sb-col:nth-child(2) .sb-pill { background: #f6dfcc; }
+      .signalboard-preview .sb-col:nth-child(3) .sb-pill { background: #e6f0e9; }
+      .signalboard-preview .sb-col:nth-child(4) .sb-pill { background: #f0e4f4; }
     </style>
 
     <header class="page-head">
@@ -148,6 +159,30 @@
         <p class="credit">基于 Multitude 开源的 <a href="https://github.com/multitude-amsterdam/p5Catalyst" target="_blank" rel="noopener">p5Catalyst</a>（MIT）改造。</p>
         <div class="actions">
           <a class="btn" href="https://github.com/fsylviaa/Poster-Factory" target="_blank" rel="noopener">查看代码 GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature">
+      <a class="shot rise signalboard-preview" href="https://fsylviaa.github.io/Signalboard/" target="_blank" rel="noopener" aria-label="打开 Signalboard 在线 Demo">
+        <div class="sb-col"><div class="sb-head"></div><div class="sb-card"><div class="sb-pill"></div><div class="sb-line"></div><div class="sb-line short"></div><div class="sb-score"></div></div><div class="sb-card"><div class="sb-pill"></div><div class="sb-line"></div><div class="sb-line short"></div></div></div>
+        <div class="sb-col"><div class="sb-head"></div><div class="sb-card"><div class="sb-pill"></div><div class="sb-line"></div><div class="sb-line short"></div><div class="sb-score"></div></div></div>
+        <div class="sb-col"><div class="sb-head"></div><div class="sb-card"><div class="sb-pill"></div><div class="sb-line"></div><div class="sb-line short"></div></div><div class="sb-card"><div class="sb-pill"></div><div class="sb-line"></div></div></div>
+        <div class="sb-col"><div class="sb-head"></div><div class="sb-card"><div class="sb-pill"></div><div class="sb-line"></div><div class="sb-line short"></div></div></div>
+      </a>
+      <div class="rise">
+        <p class="eyebrow">产品案例 Product case · 04</p>
+        <h2>反馈优先级看板<br><span class="en-name">Signalboard</span></h2>
+        <p>一个帮助产品经理把用户反馈转化为清晰路线图决策的轻量工作台。通过投票信号、RICE 评分和拖拽看板，让“为什么优先做这个需求”变得可解释。</p>
+        <ul class="feats">
+          <li>按主题、投票数和影响力筛选用户反馈</li>
+          <li>填写 Reach、Impact、Confidence、Effort，自动计算 RICE 分数</li>
+          <li>拖拽需求在待评估、计划中、开发中和已发布之间流转</li>
+        </ul>
+        <div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">RICE</span><span class="chip">LocalStorage</span></div>
+        <div class="actions">
+          <a class="btn" href="https://fsylviaa.github.io/Signalboard/" target="_blank" rel="noopener">在线体验 Try it →</a>
+          <a class="btn line" href="https://github.com/fsylviaa/Signalboard" target="_blank" rel="noopener">查看代码 GitHub ↗</a>
         </div>
       </div>
     </section>
