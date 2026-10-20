@@ -16,7 +16,7 @@
   html, body { height: 100%; }
   body {
     font-family: var(--font-body);
-    background: #08261f; /* 与图片背景的森林墨绿一致，加载时不会闪白 */
+    background: #382a33; /* 与图片背景的灰调藕粉一致，加载时不会闪白 */
     color: #fff;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
@@ -40,7 +40,7 @@
     .bg { object-position: 80% 20%; }
     .shade {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background: linear-gradient(to top, rgba(4,24,19,.85) 0%, rgba(4,24,19,.55) 35%, rgba(4,24,19,0) 60%);
+      background: linear-gradient(to top, rgba(56,42,51,.85) 0%, rgba(56,42,51,.55) 35%, rgba(56,42,51,0) 60%);
     }
   }
   #bgCanvas {
@@ -188,8 +188,8 @@
 </head>
 <body>
 
-  <!-- 背景：森林墨绿静态图，帧动画加载后自动切换 -->
-  <img id="bgImg" class="bg" src="hero-green.jpg" alt="Sylvia 的羊毛毡玩偶形象" />
+  <!-- 背景：灰调藕粉静态图，帧动画加载后自动切换 -->
+  <img id="bgImg" class="bg" src="hero-lotus.jpg" alt="Sylvia 的羊毛毡玩偶形象" />
   <canvas id="bgCanvas" class="bg" aria-hidden="true"></canvas>
   <div class="shade"></div>
   <div class="cake-cursor" id="cake" aria-hidden="true"></div>
@@ -307,7 +307,7 @@
   /* ---------- 6. 背景：会跟着鼠标看的玩偶 ----------
      用到的素材：
        frames/   60 张抠好背景的玩偶图（眼珠从左边慢慢移到右边）
-       bg-green.jpg    干净的森林墨绿背景
+       bg-lotus.jpg    干净的灰调藕粉背景
      效果：
        · 鼠标在哪，她的眼珠就看向哪：在她左边看左、在她脸前正视你、在她右边看右
        · 鼠标上下 → 头部微微抬起 / 低下
@@ -343,7 +343,7 @@
     }
   }
   bgPlate.onload = function () { bgReady = true; checkReady(); };
-  bgPlate.src = 'bg-green.jpg';
+  bgPlate.src = 'bg-lotus.jpg';
 
   function pad(n) { return ('00' + n).slice(-3); }
   function load(i) {
@@ -407,7 +407,7 @@
     var bw = bgPlate.naturalWidth * s, bh = bgPlate.naturalHeight * s;
     var bx = ox + (FW * s - bw) / 2 - mx * BG_SHIFT * dpr;
     var by = oy + (FH * s - bh) / 2 - my * BG_SHIFT * 0.6 * dpr;
-    ctx.fillStyle = '#08261f';
+    ctx.fillStyle = '#382a33';
     ctx.fillRect(0, 0, cw, ch);
     ctx.drawImage(bgPlate, bx, by, bw, bh);
 
