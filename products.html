@@ -90,14 +90,16 @@
       .signalboard-preview .sb-col:nth-child(2) .sb-pill { background: #f6dfcc; }
       .signalboard-preview .sb-col:nth-child(3) .sb-pill { background: #e6f0e9; }
       .signalboard-preview .sb-col:nth-child(4) .sb-pill { background: #f0e4f4; }
+      .page-note { border-style: solid; flex-wrap: wrap; row-gap: 2px; }
+      .page-note .en-inline { opacity: .75; }
     </style>
 
     <header class="page-head">
       <p class="eyebrow rise">AI Products · AI 产品</p>
       <h1 class="page-title rise">AI 产品<small>Things I've designed, shipped and learned from</small></h1>
-      <p class="lede rise">我做过的 AI 产品、实验和小工具。<span class="ph">一句话概括你做产品的思路。</span>
-        <span class="en">Products, experiments and small tools. <span class="ph">One line on how you build.</span></span></p>
-      <p class="ph-note">✎ 占位内容 · 之后替换成真实内容</p>
+      <p class="lede rise">我做过的 AI 产品、实验和小工具。做有用的工具，也做好玩的实验。
+        <span class="en">Products, experiments and small tools. Useful tools, playful experiments.</span></p>
+      <p class="ph-note page-note rise">📱 两款 iOS App 即将上架 App Store，敬请期待。<span class="en-inline">Two iOS apps coming soon to the App Store.</span></p>
     </header>
 
     <section class="feature">
@@ -187,7 +189,8 @@
       </div>
     </section>
 
-    <section class="section">
+    <!-- 更多项目：暂时隐藏，等两款 iOS App 上架后替换成 App 卡片，再删掉 hidden -->
+    <section class="section" hidden>
       <h2 class="section-title rise">更多项目 <small>More work</small></h2>
       <div class="pgrid">
         
