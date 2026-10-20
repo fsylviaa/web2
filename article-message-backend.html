@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>消息后台产品功能模块的设计思路 — F.Sylvia</title>
+<meta name="description" content="从基础业务结构与功能设计出发，梳理消息后台产品的消息管理、消息源、渠道及日志模块。" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium" />
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg" />
+<link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="logo" href="index.html"><span class="logo-text">F.Sylvia®</span><span class="logo-star">首页</span></a>
+    <div class="links">
+      <a href="about.html">关于我<small>About</small></a><span>,&nbsp;</span>
+      <a href="products.html">AI 产品<small>AI Products</small></a><span>,&nbsp;</span>
+      <a href="art.html">艺术作品<small>Art</small></a><span>,&nbsp;</span>
+      <a href="content.html" class="active" aria-current="page">我的思考<small>Thoughts</small></a>
+    </div>
+    <a class="cta" href="about.html#contact">联系我<small>Contact</small></a>
+    <button class="burger" id="burger" aria-label="打开菜单 Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="overlay m-links" id="overlay">
+    <a href="index.html">首页<small>Home</small></a>
+    <a href="about.html">关于我<small>About</small></a>
+    <a href="products.html">AI 产品<small>AI Products</small></a>
+    <a href="art.html">艺术作品<small>Art</small></a>
+    <a href="content.html">我的思考<small>Thoughts</small></a>
+    <a href="about.html#contact" class="u">联系我<small>Contact</small></a>
+  </div>
+
+  <main class="wrap">
+    <style>
+      .art-head { padding: 56px 0 40px; max-width: 940px; }
+      .back { display: inline-flex; gap: 8px; font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+      .back:hover { color: #fff; }
+      .art-title { font-family: var(--font-heading); font-weight: 500; font-size: clamp(30px, 5vw, 54px); line-height: 1.18; letter-spacing: -0.02em; text-wrap: balance; }
+      .art-meta { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 22px; color: var(--muted); font-size: 14px; }
+      .art-card { background: var(--cream); color: #2a1416; border-radius: 28px; padding: clamp(28px, 6vw, 72px) clamp(20px, 7vw, 96px); margin-bottom: 56px; }
+      .art-body { max-width: 42em; margin: 0 auto; font-size: 17.5px; line-height: 1.95; }
+      .art-body p { margin: 0 0 1.15em; }
+      .art-body > p:first-child { font-size: 1.12em; color: #8c0712; }
+      .art-body h2 { font-family: var(--font-heading); font-weight: 500; font-size: clamp(22px, 2.8vw, 28px); line-height: 1.35; color: #8c0712; margin: 2.2em 0 .9em; padding-top: 1.2em; border-top: 1px solid rgba(140, 7, 18, .16); }
+      .art-body h3 { font-family: var(--font-heading); font-weight: 500; font-size: clamp(19px, 2.2vw, 23px); line-height: 1.45; color: #5e1d22; margin: 1.8em 0 .75em; }
+      .art-fig { margin: 2em -4%; }
+      .art-fig img { width: 100%; height: auto; border-radius: 16px; box-shadow: 0 18px 40px -18px rgba(80, 0, 10, .35); }
+      .art-foot { max-width: 42em; margin: 3em auto 0; padding-top: 1.6em; border-top: 1px solid rgba(140, 7, 18, .16); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; font-size: 15px; color: #6b4a4c; }
+      .art-foot .btn { background: var(--red); border-color: var(--red); color: #fff; }
+      @media (max-width: 600px) { .art-body { font-size: 16.5px; line-height: 1.9; } }
+    </style>
+
+    <header class="art-head">
+      <a class="back" href="content.html">← 返回我的思考 Back to Thoughts</a>
+      <p class="eyebrow">文章 Article · 产品设计</p>
+      <h1 class="art-title">消息后台产品功能模块的设计思路</h1>
+      <div class="art-meta"><span>Sylvia</span><span>2024.01.08</span><span>约 7 分钟阅读</span><span>B端产品 · 后台设计</span></div>
+    </header>
+
+    <article class="art-card">
+      <div class="art-body">
+        <p>消息触达能力是实现业务闭环和重要组成部分，但在实际业务开展当中，很多组织因为前期没有做统一的产品规划，没有考虑功能的复用性和合理性，各产品按分割的业务的需求进行设计，没有合理利用自身的资源，导致自主消息能力很薄弱。</p>
+        <p>为了进一步优化营运阶段的业务深度，提升服务效率，往往需要通过整合和管理多元化消息通知业务，构建云原生的、高性能的、高可用的消息中心，以实现业务增长、数据活跃的目的。</p>
+        <h2>一、基础业务结构</h2>
+        <figure class="art-fig"><img src="assets/posts/message-backend-1.png" alt="消息后台产品功能模块图解 1" loading="lazy" /></figure>
+        <h3>结构概述</h3>
+        <p>核心功能层：主要包括了消息创建、消息推送、消息配置、消息日志、消息监控、消息任务调度、对接管理、用户群组等功能。</p>
+        <p>功能接口层：功能接口层以统一的标准提供给需要发送消息的信息渠道源，例如：创建消息任务、查询消息、更新消息、取消消息等。通过标准的功能服务接口，需要发送消息的应用系统只需要关注接口的功能，而不需要关注具体消息发送的实现细节，进一步做到不同对接体系下系统间的解耦。</p>
+        <p>通道适配层：通道适配层支持所有消息类型的发送要求，可针对不同渠道设置、管理、配置对应的消息推送模板，可以提高消息发送通道的灵活性和扩展性。</p>
+        <h2>二、功能设计</h2>
+        <figure class="art-fig"><img src="assets/posts/message-backend-2.png" alt="消息后台产品功能模块图解 2" loading="lazy" /></figure>
+        <h3>1. 消息管理</h3>
+        <p>1）运营消息</p>
+        <p>① 写消息</p>
+        <p>写消息模块编辑消息的信息，包括：选择消息模板、添加消息标题、选择消息发送的渠道、选择消息推送方式、选择消息推送时间、填写模板内容详细信息。可选择发送消息或者将消息暂存在草稿箱，发送的消息会在收件箱以及消息推送模块中展示。</p>
+        <p>② 草稿箱</p>
+        <p>草稿箱模块保存用户编辑但未发送的消息，展示用户保存消息的时间、消息内容、消息模板、渠道类型、渠道名称、推送方式、推送时间、推送用户，可再次进入消息编辑页面，对消息内容进行修改，也可以删除草稿箱中的消息。</p>
+        <p>③ 发件箱</p>
+        <p>发件箱模块展示发送消息的内容、消息模板、渠道类型、渠道名称、推送时间、推送用户、推送结果（成功数/失败数）、查看消息详细信息、删除发件信息。点击查看按钮展示发送信息详细状态，展示用户姓名、账号以及推送状态，消息推送失败后可再次推送。</p>
+        <p>2）标签管理</p>
+        <figure class="art-fig"><img src="assets/posts/message-backend-3.png" alt="消息后台产品功能模块图解 3" loading="lazy" /></figure>
+        <p>标签管理主要是方便消息后台使用者自己对消息类型进行打标签，方便后续数据统计。</p>
+        <p>3）模版管理</p>
+        <figure class="art-fig"><img src="assets/posts/message-backend-4.png" alt="消息后台产品功能模块图解 4" loading="lazy" /></figure>
+        <p>对模版进行增删改查等操作，新增模板时，可选择APP模板，短信模板、微信模板、钉钉模板、邮箱模板、小程序模板、PC模板。且可根据不同渠道“定制”消息模板样式，如文本样式，图片样式，图文样式，信息流样式，强提醒样式和自定义样式等多消息展示样式。</p>
+        <p>4）消息列表</p>
+        <p>在待推送区域中，若推送消息选择定时推送，那么待推送的消息会展示在此列表。在已推送中可以查看已经推送的消息，其中，app、微信、支付宝小程序的消息推送前会有标识符设定，有标识符代表用户未读信息，没有的表示已读。若消息推送失败，可在此处查看原因以及重新发送，推送成功的消息无法重新发送。</p>
+        <p>5）消息统计</p>
+        <figure class="art-fig"><img src="assets/posts/message-backend-5.png" alt="消息后台产品功能模块图解 5" loading="lazy" /></figure>
+        <p>消息统计模块的设计规划，可根据自身的业务情形和运营侧或相关业务部门的具体要求进行落地。</p>
+        <h3>2. 消息源管理</h3>
+        <figure class="art-fig"><img src="assets/posts/message-backend-6.png" alt="消息后台产品功能模块图解 6" loading="lazy" /></figure>
+        <p>消息源管理中主要是管理消息平台对接的第三方，包括会给平台推消息的“消息发送者”，也可以是“消息接受者”。</p>
+        <p>第一类来源三方消息推送源头列表，新建来源后需要单独和消息源做接口对接，封装接口接收消息源推送过来的消息，然后根据自身消息推送策略完成消息转发推送。第二类是自定义渠道道的消息接受者，需要关联渠道。</p>
+        <p>消息来源阈值设置，是对接入的三方消息来源进行安全设置，阈值设置可以从以下角度进行规划和实施控制：流量限制、周期限制、用户限制、预警功能。</p>
+        <figure class="art-fig"><img src="assets/posts/message-backend-7.png" alt="消息后台产品功能模块图解 7" loading="lazy" /></figure>
+        <h3>4. 渠道管理</h3>
+        <p>主要管理消息PUSH可配置送达的渠道，在后台做可视化的展示和渠道开启关闭的限制，后续有消息实例消费转化时会根据开关状态决定是否完成触达，这里更多的是做展示，每个渠道触达的通道还是需要定制化开发去实现的。</p>
+        <h3>5. 日志管理</h3>
+        <figure class="art-fig"><img src="assets/posts/message-backend-8.png" alt="消息后台产品功能模块图解 8" loading="lazy" /></figure>
+        <p>消息日志记录着消息从创建至结束的全生命周期过程，便于对日志过程及结果的查询和统计分析。</p>
+        <h2>三、总结</h2>
+        <p>定制开发消息后台产品，开发功能展示界面，是在特定场景下，为完成业务融合而产生的特殊需要。开发这样一个后台产品，需要使用到较多的基础设施资源，例如：前端服务、后端服务集群、SLB、推送代理服务器、单点登录服务、PUSH服务、消息策略服务等。</p>
+        <p>从资源的角度上来讲，需要较多的服务器，从功能开发对接的角度来看，封装接口接收三方消息源推送的消息、对接消息推送渠道、整合消息转发能力、支持后台自定义编辑消息推送功能等模块也需要较多的人力资源成本。</p>
+        <p>综上可见，如果不是业务上确切需要，或者只是单纯需要做某些单一渠道PUSH能力的话，完全可以利用市面上较为成熟的商业化平台产品，而且还能集成相关的前端SDK，省时省心省力。</p>
+      </div>
+      <div class="art-foot">
+        <span>想聊聊 B 端后台产品设计？</span>
+        <button class="btn" type="button" data-copy="silviafsy01@gmail.com">复制邮箱 Copy email</button>
+      </div>
+    </article>
+  </main>
+
+  <footer class="wrap foot">
+    <span>© F.Sylvia · AI 产品经理 / 艺术家</span>
+    <span><a href="index.html">回到首页 Home</a> · <button type="button" data-copy="silviafsy01@gmail.com" style="background:none;border:0;text-decoration:underline;text-underline-offset:3px">silviafsy01@gmail.com</button></span>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>
+
