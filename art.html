@@ -162,44 +162,44 @@
       })();
     </script>
 
-    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="放大查看作品">
-      <button class="lightbox-close" id="lightboxClose" type="button" aria-label="关闭图片预览">×</button>
-      <img id="lightboxImage" src="" alt="" />
-      <p class="lightbox-caption" id="lightboxCaption"></p>
-    </div>
-    <script>
-      (function () {
-        var box = document.getElementById('lightbox');
-        var image = document.getElementById('lightboxImage');
-        var caption = document.getElementById('lightboxCaption');
-        var close = document.getElementById('lightboxClose');
-        var lastFocus;
-        function hide() {
-          box.classList.remove('is-open');
-          document.body.classList.remove('lightbox-open');
-          image.removeAttribute('src');
-          if (lastFocus) lastFocus.focus();
-        }
-        document.querySelectorAll('.masonry .tile a').forEach(function (link) {
-          link.addEventListener('click', function (event) {
-            event.preventDefault();
-            lastFocus = link;
-            var source = link.querySelector('img');
-            image.src = link.href;
-            image.alt = source.alt;
-            caption.textContent = link.closest('.tile').querySelector('figcaption').textContent;
-            box.classList.add('is-open');
-            document.body.classList.add('lightbox-open');
-            close.focus();
-          });
-        });
-        close.addEventListener('click', hide);
-        box.addEventListener('click', function (event) { if (event.target === box) hide(); });
-        document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && box.classList.contains('is-open')) hide(); });
-      })();
-    </script>
-
   </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="放大查看作品">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="关闭图片预览">×</button>
+    <img id="lightboxImage" src="" alt="" />
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+  <script>
+    (function () {
+      var box = document.getElementById('lightbox');
+      var image = document.getElementById('lightboxImage');
+      var caption = document.getElementById('lightboxCaption');
+      var close = document.getElementById('lightboxClose');
+      var lastFocus;
+      function hide() {
+        box.classList.remove('is-open');
+        document.body.classList.remove('lightbox-open');
+        image.removeAttribute('src');
+        if (lastFocus) lastFocus.focus();
+      }
+      document.querySelectorAll('.masonry .tile a').forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          event.preventDefault();
+          lastFocus = link;
+          var source = link.querySelector('img');
+          image.src = link.href;
+          image.alt = source.alt;
+          caption.textContent = link.closest('.tile').querySelector('figcaption').textContent;
+          box.classList.add('is-open');
+          document.body.classList.add('lightbox-open');
+          close.focus();
+        });
+      });
+      close.addEventListener('click', hide);
+      box.addEventListener('click', function (event) { if (event.target === box) hide(); });
+      document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && box.classList.contains('is-open')) hide(); });
+    })();
+  </script>
 
   <footer class="wrap foot">
     <span>© F.Sylvia · AI 产品经理 / 艺术家</span>
