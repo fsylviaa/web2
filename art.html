@@ -57,17 +57,16 @@
       .tile { break-inside: avoid; margin: 0 0 28px; }
       .tile a { display: block; overflow: hidden; border-radius: 14px; background: rgba(255,255,255,.06); cursor: zoom-in; }
       .tile img { width: 100%; height: auto; transition: transform .4s ease; }
-      body.lightbox-open { overflow: hidden; }
       body.lightbox-open > .nav,
       body.lightbox-open > .wrap { filter: blur(10px); transition: filter .25s ease; }
       body.lightbox-open .cake-cursor,
       body.lightbox-open .cake-trail { visibility: hidden; }
-      .lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 40px; background: rgba(24, 0, 5, .68); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+      .lightbox { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; overflow-y: auto; overscroll-behavior: contain; padding: clamp(70px, 10vh, 120px) 40px 90px; background: rgba(24, 0, 5, .68); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
       .lightbox.is-open { opacity: 1; pointer-events: auto; }
-      .lightbox img { display: block; max-width: min(92vw, 1200px); max-height: 82vh; width: auto; height: auto; object-fit: contain; border-radius: 14px; box-shadow: 0 24px 80px rgba(0,0,0,.5); }
+      .lightbox img { display: block; flex: 0 0 auto; width: min(92vw, 1200px); max-width: 1200px; height: auto; object-fit: contain; border-radius: 14px; box-shadow: 0 24px 80px rgba(0,0,0,.5); }
       .lightbox-close { position: absolute; top: 18px; right: 22px; border: 0; background: none; color: #fff; font-size: 34px; line-height: 1; padding: 8px; cursor: pointer; }
       .lightbox-caption { position: absolute; left: 24px; right: 24px; bottom: 18px; color: rgba(255,255,255,.78); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) { .lightbox { padding: 24px 16px; } .lightbox img { max-width: 94vw; max-height: 78vh; } }
+      @media (max-width: 600px) { .lightbox { padding: 70px 16px 80px; } .lightbox img { width: 94vw; } }
       .tile:hover img { transform: scale(1.015); }
       .tile figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; font-size: 14px; }
       .tile figcaption span:last-child { color: var(--muted); white-space: nowrap; }
